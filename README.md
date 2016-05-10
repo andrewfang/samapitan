@@ -1,5 +1,5 @@
 # Samapitan
-A CS377U Project
+A CS377E Project
 
 * Andrew Fang
 * Timon Ruban

@@ -65,7 +65,8 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Oea-le-dJb">
-                        <barButtonItem key="rightBarButtonItem" title="Profile" id="9Bo-0c-HvP">
+                        <barButtonItem key="rightBarButtonItem" image="viewProfile" id="9Bo-0c-HvP">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Hjh-wi-VbV" kind="presentation" id="HCR-Fo-F8C"/>
                             </connections>
@@ -74,6 +75,7 @@
                     <connections>
                         <outlet property="mapView" destination="Ud9-fa-slX" id="4fI-W1-cap"/>
                         <segue destination="gEP-vt-8BY" kind="presentation" identifier="ShowProfileSegue" id="adc-AB-eG6"/>
+                        <segue destination="BBC-H5-MuR" kind="show" identifier="ShowRequestSegue" id="7zV-N9-6CQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -87,6 +89,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sK-4s-PaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1396" y="1138"/>
+        </scene>
+        <!--Request-->
+        <scene sceneID="iTK-og-N7Y">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Request" id="BBC-H5-MuR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CR8-eT-n4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1383" y="939"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Wht-Oo-ePT">
@@ -134,5 +144,6 @@
     <resources>
         <image name="createNewRequest" width="256" height="256"/>
         <image name="list" width="256" height="256"/>
+        <image name="viewProfile" width="32" height="32"/>
     </resources>
 </document>

@@ -15,6 +15,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         static let PostPin = "PostPin"
         static let PersonPin = "PersonPin"
         static let ShowProfileSegue = "ShowProfileSegue"
+        static let ShowRequestSegue = "ShowRequestSegue"
         static let ThumbnailFrame = CGRect(x: 0, y: 0, width: 59, height: 59)
     }
 
@@ -31,8 +32,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Samapitan"
         self.setupLocationManager()
-        self.posts = [HelpPost(coord: CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04), title: "2 Shoes", subtitle: "", color: UIColor.greenColor())]
+        self.posts = [
+            HelpPost(coord: CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04), title: "2 Shoes", subtitle: "", color: UIColor.greenColor())
+        ]
         
         self.people = [
             PeoplePost(coord: CLLocationCoordinate2D(latitude: 37.34, longitude: -122.03),
@@ -73,6 +77,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     a.pinTintColor = hp.color
                 }
                 view.leftCalloutAccessoryView = nil
+                view.rightCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
             } else {
                 view.annotation = annotation
             }
@@ -83,16 +88,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 view.canShowCallout = true
                 view.image = UIImage(named: "personPin")
                 view.calloutOffset = CGPointMake(0, 0)
+                view.rightCalloutAccessoryView = nil
                 view.leftCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
             } else {
                 view.annotation = annotation
             }
         }
-        
-        
-//         Clear it out first, might be reused
-        
-        
         return view
     }
     
@@ -111,11 +112,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }
             }
         }
+        
+        if let thumbnailImageView = view.rightCalloutAccessoryView as? UIButton,
+            let _ = view.annotation as? HelpPost {
+            thumbnailImageView.setImage(UIImage(named: "help"), forState: .Normal)
+        }
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.leftCalloutAccessoryView {
             performSegueWithIdentifier(Constants.ShowProfileSegue, sender: view)
+        } else if control == view.rightCalloutAccessoryView {
+            performSegueWithIdentifier(Constants.ShowRequestSegue, sender: view)
         }
     }
     

@@ -25,6 +25,8 @@
 		496589651CE4792C006BC319 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589641CE4792C006BC319 /* Profile.storyboard */; };
 		496589681CE4799B006BC319 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589671CE4799B006BC319 /* ProfileViewController.swift */; };
 		4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */; };
+		4965896D1CE48F4B006BC319 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896C1CE48F4B006BC319 /* RequestViewController.swift */; };
+		4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4965896E1CE48F6E006BC319 /* Request.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		496589641CE4792C006BC319 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		496589671CE4799B006BC319 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		4965896C1CE48F4B006BC319 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		4965896E1CE48F6E006BC319 /* Request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				4965895A1CE4451F006BC319 /* Add new Request */,
 				496589591CE44511006BC319 /* View Requests */,
 				4965890C1CE28DA4006BC319 /* Assets.xcassets */,
+				496589701CE48F7F006BC319 /* Request */,
 			);
 			path = samapitan;
 			sourceTree = "<group>";
@@ -149,6 +154,15 @@
 				4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		496589701CE48F7F006BC319 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				4965896C1CE48F4B006BC319 /* RequestViewController.swift */,
+				4965896E1CE48F6E006BC319 /* Request.storyboard */,
+			);
+			name = Request;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +225,7 @@
 			files = (
 				4965895C1CE44621006BC319 /* Settings.storyboard in Resources */,
 				496589101CE28DA4006BC319 /* LaunchScreen.storyboard in Resources */,
+				4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */,
 				4965890D1CE28DA4006BC319 /* Assets.xcassets in Resources */,
 				496589541CE443EC006BC319 /* Requests.storyboard in Resources */,
 				496589561CE44462006BC319 /* CreateRequest.storyboard in Resources */,
@@ -228,6 +243,7 @@
 			files = (
 				496589581CE44509006BC319 /* RequestsViewController.swift in Sources */,
 				4965895F1CE46A03006BC319 /* UIColor+sampaitan.swift in Sources */,
+				4965896D1CE48F4B006BC319 /* RequestViewController.swift in Sources */,
 				4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */,
 				496589681CE4799B006BC319 /* ProfileViewController.swift in Sources */,
 				496589521CE3B92E006BC319 /* CreateRequestViewController.swift in Sources */,

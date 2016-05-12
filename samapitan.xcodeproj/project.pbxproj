@@ -12,6 +12,19 @@
 		4965890B1CE28DA4006BC319 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589091CE28DA4006BC319 /* Main.storyboard */; };
 		4965890D1CE28DA4006BC319 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4965890C1CE28DA4006BC319 /* Assets.xcassets */; };
 		496589101CE28DA4006BC319 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4965890E1CE28DA4006BC319 /* LaunchScreen.storyboard */; };
+		496589191CE2ED31006BC319 /* HelpPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589181CE2ED31006BC319 /* HelpPost.swift */; };
+		4965891B1CE30615006BC319 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965891A1CE30615006BC319 /* SettingsViewController.swift */; };
+		4965891D1CE30ABD006BC319 /* PeoplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965891C1CE30ABD006BC319 /* PeoplePost.swift */; };
+		496589521CE3B92E006BC319 /* CreateRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589511CE3B92E006BC319 /* CreateRequestViewController.swift */; };
+		496589541CE443EC006BC319 /* Requests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589531CE443EC006BC319 /* Requests.storyboard */; };
+		496589561CE44462006BC319 /* CreateRequest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589551CE44462006BC319 /* CreateRequest.storyboard */; };
+		496589581CE44509006BC319 /* RequestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589571CE44509006BC319 /* RequestsViewController.swift */; };
+		4965895C1CE44621006BC319 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4965895B1CE44621006BC319 /* Settings.storyboard */; };
+		4965895F1CE46A03006BC319 /* UIColor+sampaitan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965895E1CE46A03006BC319 /* UIColor+sampaitan.swift */; };
+		496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589601CE46CCA006BC319 /* SwitchTableViewCell.swift */; };
+		496589651CE4792C006BC319 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589641CE4792C006BC319 /* Profile.storyboard */; };
+		496589681CE4799B006BC319 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589671CE4799B006BC319 /* ProfileViewController.swift */; };
+		4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +35,19 @@
 		4965890C1CE28DA4006BC319 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4965890F1CE28DA4006BC319 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		496589111CE28DA4006BC319 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		496589181CE2ED31006BC319 /* HelpPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpPost.swift; sourceTree = "<group>"; };
+		4965891A1CE30615006BC319 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4965891C1CE30ABD006BC319 /* PeoplePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeoplePost.swift; sourceTree = "<group>"; };
+		496589511CE3B92E006BC319 /* CreateRequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRequestViewController.swift; sourceTree = "<group>"; };
+		496589531CE443EC006BC319 /* Requests.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Requests.storyboard; sourceTree = "<group>"; };
+		496589551CE44462006BC319 /* CreateRequest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateRequest.storyboard; sourceTree = "<group>"; };
+		496589571CE44509006BC319 /* RequestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsViewController.swift; sourceTree = "<group>"; };
+		4965895B1CE44621006BC319 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		4965895E1CE46A03006BC319 /* UIColor+sampaitan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+sampaitan.swift"; sourceTree = "<group>"; };
+		496589601CE46CCA006BC319 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		496589641CE4792C006BC319 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		496589671CE4799B006BC319 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +80,75 @@
 		496589041CE28DA4006BC319 /* samapitan */ = {
 			isa = PBXGroup;
 			children = (
-				496589051CE28DA4006BC319 /* AppDelegate.swift */,
+				4965894F1CE3B911006BC319 /* Support */,
+				4965895E1CE46A03006BC319 /* UIColor+sampaitan.swift */,
+				496589501CE3B91D006BC319 /* Annotation */,
 				496589071CE28DA4006BC319 /* ViewController.swift */,
 				496589091CE28DA4006BC319 /* Main.storyboard */,
+				496589661CE47930006BC319 /* Profile */,
+				4965895D1CE4465D006BC319 /* Settings */,
+				4965895A1CE4451F006BC319 /* Add new Request */,
+				496589591CE44511006BC319 /* View Requests */,
 				4965890C1CE28DA4006BC319 /* Assets.xcassets */,
+			);
+			path = samapitan;
+			sourceTree = "<group>";
+		};
+		4965894F1CE3B911006BC319 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				496589051CE28DA4006BC319 /* AppDelegate.swift */,
 				4965890E1CE28DA4006BC319 /* LaunchScreen.storyboard */,
 				496589111CE28DA4006BC319 /* Info.plist */,
 			);
-			path = samapitan;
+			name = Support;
+			sourceTree = "<group>";
+		};
+		496589501CE3B91D006BC319 /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				496589181CE2ED31006BC319 /* HelpPost.swift */,
+				4965891C1CE30ABD006BC319 /* PeoplePost.swift */,
+			);
+			name = Annotation;
+			sourceTree = "<group>";
+		};
+		496589591CE44511006BC319 /* View Requests */ = {
+			isa = PBXGroup;
+			children = (
+				496589571CE44509006BC319 /* RequestsViewController.swift */,
+				496589531CE443EC006BC319 /* Requests.storyboard */,
+			);
+			name = "View Requests";
+			sourceTree = "<group>";
+		};
+		4965895A1CE4451F006BC319 /* Add new Request */ = {
+			isa = PBXGroup;
+			children = (
+				496589511CE3B92E006BC319 /* CreateRequestViewController.swift */,
+				496589551CE44462006BC319 /* CreateRequest.storyboard */,
+			);
+			name = "Add new Request";
+			sourceTree = "<group>";
+		};
+		4965895D1CE4465D006BC319 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4965891A1CE30615006BC319 /* SettingsViewController.swift */,
+				4965895B1CE44621006BC319 /* Settings.storyboard */,
+				496589601CE46CCA006BC319 /* SwitchTableViewCell.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		496589661CE47930006BC319 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				496589641CE4792C006BC319 /* Profile.storyboard */,
+				496589671CE4799B006BC319 /* ProfileViewController.swift */,
+				4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,8 +209,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4965895C1CE44621006BC319 /* Settings.storyboard in Resources */,
 				496589101CE28DA4006BC319 /* LaunchScreen.storyboard in Resources */,
 				4965890D1CE28DA4006BC319 /* Assets.xcassets in Resources */,
+				496589541CE443EC006BC319 /* Requests.storyboard in Resources */,
+				496589561CE44462006BC319 /* CreateRequest.storyboard in Resources */,
+				496589651CE4792C006BC319 /* Profile.storyboard in Resources */,
 				4965890B1CE28DA4006BC319 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,8 +226,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496589581CE44509006BC319 /* RequestsViewController.swift in Sources */,
+				4965895F1CE46A03006BC319 /* UIColor+sampaitan.swift in Sources */,
+				4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */,
+				496589681CE4799B006BC319 /* ProfileViewController.swift in Sources */,
+				496589521CE3B92E006BC319 /* CreateRequestViewController.swift in Sources */,
+				4965891D1CE30ABD006BC319 /* PeoplePost.swift in Sources */,
 				496589081CE28DA4006BC319 /* ViewController.swift in Sources */,
+				496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */,
 				496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */,
+				4965891B1CE30615006BC319 /* SettingsViewController.swift in Sources */,
+				496589191CE2ED31006BC319 /* HelpPost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +388,7 @@
 				496589161CE28DA4006BC319 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

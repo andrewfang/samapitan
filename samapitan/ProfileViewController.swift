@@ -44,11 +44,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.translucent = true
     }
     
-    @IBAction private func done() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
     // MARK: - TableView
     private enum Sections:Int {
         case About = 0

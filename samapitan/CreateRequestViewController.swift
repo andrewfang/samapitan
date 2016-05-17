@@ -13,7 +13,10 @@ class CreateRequestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.title = "Create New Request"
     }
 
     override func didReceiveMemoryWarning() {

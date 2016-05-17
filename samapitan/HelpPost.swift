@@ -10,22 +10,40 @@ import UIKit
 import MapKit
 
 class HelpPost: NSObject, MKAnnotation {
+    enum Urgency {
+        case Later
+        case ASAP
+        case Immediately
+    }
     
     var titleString:String!
     var subtitleString:String!
+    var descriptionString: String!
     var coord:CLLocationCoordinate2D!
+    var urgency: Urgency!
     var color: UIColor!
+    var membersHelpingOut:[PeoplePost]!
 
-    init(coord:CLLocationCoordinate2D, title:String, subtitle:String, color:UIColor) {
+    init(coord:CLLocationCoordinate2D, title:String, description:String, urgency:Urgency, membersHelpingOut:[PeoplePost]) {
         self.coord = coord
         self.titleString = title
-        self.subtitleString = subtitle
-        self.color = color
+        self.subtitleString = ""
+        self.urgency = urgency
+        self.descriptionString = description
+        switch (urgency) {
+        case .ASAP:
+            self.color = UIColor.appOrange()
+        case .Later:
+            self.color = UIColor.greenColor()
+        case .Immediately:
+            self.color = UIColor.appRed()
+        }
+        
+        self.membersHelpingOut = membersHelpingOut
+        
     }
 
     @objc var coordinate: CLLocationCoordinate2D {
-//        let lat = self.latlong.coordinate.latitude + Double(arc4random())/Double(UINT32_MAX)/10000.0
-//        let long = self.latlong.coordinate.longitude + Double(arc4random())/Double(UINT32_MAX)/10000.0
         return self.coord
     }
     

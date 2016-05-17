@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Request View Controller-->
@@ -16,8 +17,102 @@
                     <view key="view" contentMode="scaleToFill" id="IpO-Pi-dM6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-ca-cRv">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="meCell" id="yND-9p-zMX" customClass="ChatTableViewCell" customModule="samapitan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yND-9p-zMX" id="qUe-Se-Pw7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ee0-zm-dWu" customClass="UIPaddedLabel" customModule="samapitan" customModuleProvider="target">
+                                                    <rect key="frame" x="338" y="11" width="244" height="21"/>
+                                                    <color key="backgroundColor" red="0.22352941179999999" green="0.70980392160000005" blue="0.2901960784" alpha="0.87383868239999996" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="244" id="vrh-D0-2E1"/>
+                                                    </constraints>
+                                                    <string key="text">Label with a lot of text lorem ipsum and there is more text here. I will continue to write text until it doens't show up. and I hope that the text will still show up, even though I don't really know what's going to happen.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ee0-zm-dWu" firstAttribute="centerY" secondItem="qUe-Se-Pw7" secondAttribute="centerY" id="8un-Xy-Blb"/>
+                                                <constraint firstItem="ee0-zm-dWu" firstAttribute="trailing" secondItem="qUe-Se-Pw7" secondAttribute="trailingMargin" constant="-10" id="UPt-4K-Mbm"/>
+                                                <constraint firstItem="ee0-zm-dWu" firstAttribute="top" secondItem="qUe-Se-Pw7" secondAttribute="topMargin" constant="3" id="YkN-lV-WMW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="content" destination="ee0-zm-dWu" id="hz5-lB-jgr"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="notMeCell" id="6Hx-3F-zkw" customClass="ChatTableViewCell" customModule="samapitan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Hx-3F-zkw" id="Xfn-Kh-IrR">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label with a lot of text lorem ipsum and there is more text is what isl flkwjefawefw .falff andlkf there is ." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Xr-RE-QGZ" customClass="UIPaddedLabel" customModule="samapitan" customModuleProvider="target">
+                                                    <rect key="frame" x="18" y="11" width="238" height="21"/>
+                                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="244" id="jXj-Lk-eNP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbP-jP-wuP">
+                                                    <rect key="frame" x="28" y="-1" width="26.5" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6Xr-RE-QGZ" firstAttribute="top" secondItem="tbP-jP-wuP" secondAttribute="bottom" id="5VS-Pu-pVA"/>
+                                                <constraint firstItem="6Xr-RE-QGZ" firstAttribute="leading" secondItem="Xfn-Kh-IrR" secondAttribute="leadingMargin" constant="10" id="Acw-rT-3gq"/>
+                                                <constraint firstItem="6Xr-RE-QGZ" firstAttribute="top" secondItem="Xfn-Kh-IrR" secondAttribute="topMargin" constant="3" id="BLD-uY-3DX"/>
+                                                <constraint firstItem="6Xr-RE-QGZ" firstAttribute="centerY" secondItem="Xfn-Kh-IrR" secondAttribute="centerY" id="Oct-tq-ktK"/>
+                                                <constraint firstItem="tbP-jP-wuP" firstAttribute="leading" secondItem="6Xr-RE-QGZ" secondAttribute="leading" constant="10" id="eSN-QT-ld5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="content" destination="6Xr-RE-QGZ" id="J7N-TU-xEb"/>
+                                            <outlet property="nameLabel" destination="tbP-jP-wuP" id="MBu-pn-3p3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="centerX" secondItem="IpO-Pi-dM6" secondAttribute="centerX" id="Cu0-jw-cy7"/>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="height" secondItem="IpO-Pi-dM6" secondAttribute="height" id="b1k-VM-W1b"/>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="centerY" secondItem="IpO-Pi-dM6" secondAttribute="centerY" id="dIq-Te-JCK"/>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="width" secondItem="IpO-Pi-dM6" secondAttribute="width" id="dst-SA-d0D"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="weg-ca-cRv" id="MUn-QH-kYE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nfe-NU-cXr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

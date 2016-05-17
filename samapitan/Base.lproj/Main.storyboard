@@ -66,7 +66,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Oea-le-dJb">
                         <barButtonItem key="rightBarButtonItem" image="viewProfile" id="9Bo-0c-HvP">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Hjh-wi-VbV" kind="presentation" id="HCR-Fo-F8C"/>
                             </connections>
@@ -74,7 +74,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Ud9-fa-slX" id="4fI-W1-cap"/>
-                        <segue destination="gEP-vt-8BY" kind="presentation" identifier="ShowProfileSegue" id="adc-AB-eG6"/>
+                        <segue destination="gEP-vt-8BY" kind="show" identifier="ShowProfileSegue" id="adc-AB-eG6"/>
                         <segue destination="BBC-H5-MuR" kind="show" identifier="ShowRequestSegue" id="7zV-N9-6CQ"/>
                     </connections>
                 </viewController>
@@ -96,7 +96,7 @@
                 <viewControllerPlaceholder storyboardName="Request" id="BBC-H5-MuR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CR8-eT-n4p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1383" y="939"/>
+            <point key="canvasLocation" x="1510" y="927"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Wht-Oo-ePT">
@@ -130,6 +130,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mhd-Yy-V79">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

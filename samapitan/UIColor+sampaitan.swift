@@ -19,7 +19,8 @@ extension UIColor {
     static func appTeal() -> UIColor { return UIColor.rgb(52, 178, 188) }
     static func appBlue() -> UIColor { return UIColor.rgb(82, 132, 195) }
     static func appPurple() -> UIColor { return UIColor.rgb(204, 127, 174) }
-    static func appBackgroundColor() -> UIColor { return UIColor.rgb(233, 233, 233) }
+    static func appBackgroundColor() -> UIColor { return UIColor.rgb(244, 244, 244) }
+    static func appTabBarColor() -> UIColor { return UIColor.rgb(66, 66, 66) }
     
     // Given a r,g,b, transforms it into a UIColor element
     static func rgb(red:CGFloat, _ green: CGFloat, _ blue: CGFloat) -> UIColor{

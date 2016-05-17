@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49216A721CEA70AB0097C72F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49216A711CEA70AB0097C72F /* Database.swift */; };
 		496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589051CE28DA4006BC319 /* AppDelegate.swift */; };
 		496589081CE28DA4006BC319 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496589071CE28DA4006BC319 /* ViewController.swift */; };
 		4965890B1CE28DA4006BC319 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496589091CE28DA4006BC319 /* Main.storyboard */; };
@@ -27,9 +28,12 @@
 		4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */; };
 		4965896D1CE48F4B006BC319 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896C1CE48F4B006BC319 /* RequestViewController.swift */; };
 		4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4965896E1CE48F6E006BC319 /* Request.storyboard */; };
+		49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5151CEB860300792503 /* ChatTableViewCell.swift */; };
+		49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49216A711CEA70AB0097C72F /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		496589021CE28DA4006BC319 /* samapitan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = samapitan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		496589051CE28DA4006BC319 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		496589071CE28DA4006BC319 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 		4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		4965896C1CE48F4B006BC319 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		4965896E1CE48F6E006BC319 /* Request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
+		49EAF5151CEB860300792503 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +99,9 @@
 				4965895D1CE4465D006BC319 /* Settings */,
 				4965895A1CE4451F006BC319 /* Add new Request */,
 				496589591CE44511006BC319 /* View Requests */,
-				4965890C1CE28DA4006BC319 /* Assets.xcassets */,
 				496589701CE48F7F006BC319 /* Request */,
+				4965890C1CE28DA4006BC319 /* Assets.xcassets */,
+				49216A711CEA70AB0097C72F /* Database.swift */,
 			);
 			path = samapitan;
 			sourceTree = "<group>";
@@ -160,7 +167,9 @@
 			isa = PBXGroup;
 			children = (
 				4965896C1CE48F4B006BC319 /* RequestViewController.swift */,
+				49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */,
 				4965896E1CE48F6E006BC319 /* Request.storyboard */,
+				49EAF5151CEB860300792503 /* ChatTableViewCell.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -252,7 +261,10 @@
 				496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */,
 				496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */,
 				4965891B1CE30615006BC319 /* SettingsViewController.swift in Sources */,
+				49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */,
+				49216A721CEA70AB0097C72F /* Database.swift in Sources */,
 				496589191CE2ED31006BC319 /* HelpPost.swift in Sources */,
+				49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

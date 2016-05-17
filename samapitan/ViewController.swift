@@ -33,24 +33,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         
         self.title = "Samapitan"
+        self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
+        self.navigationController?.navigationBar.translucent = true
         self.setupLocationManager()
-        self.posts = [
-            HelpPost(coord: CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04), title: "2 Shoes", subtitle: "", color: UIColor.greenColor())
-        ]
-        
-        self.people = [
-            PeoplePost(coord: CLLocationCoordinate2D(latitude: 37.34, longitude: -122.03),
-                name: "Nylah",
-                group: "Lifeguard Hellas",
-                imageURL:"https://scontent-sjc2-1.xx.fbcdn.net/v/t1.0-9/12342813_10205652038326525_4273274924412096299_n.jpg?oh=21c496301a560ee4a26374be2bd0a0eb&oe=57A43CA5",
-                bio: "I am CPR certified."),
-            PeoplePost(coord: CLLocationCoordinate2D(latitude: 37.33, longitude: -122.04),
-                name: "Amber",
-                group: "Woman's Shelter",
-                imageURL:"https://scontent-sjc2-1.xx.fbcdn.net/t31.0-8/13131628_459973477526874_6316925508205068443_o.jpg",
-                bio: "Stanford Student"),
-        ]
+        self.posts = []
+        self.posts.appendContentsOf(Database.AllRequests)
+        self.posts.appendContentsOf(Database.PendingRequests)
+        self.posts.appendContentsOf(Database.RespondedToRequests)
+        self.people = Database.PeoplePinsToLoad
         self.addAnnotations()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     private func addAnnotations() {
@@ -131,14 +131,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if segue.identifier == Constants.ShowProfileSegue {
             if let view = sender as? MKAnnotationView {
                 if let ppost = view.annotation as? PeoplePost {
-                    if let navVC = segue.destinationViewController as? UINavigationController {
-                        if let destVC = navVC.viewControllers.first as? ProfileViewController {
-                            destVC.person = ppost
-                        }
+                    if let destVC = segue.destinationViewController as? ProfileViewController {
+                        destVC.person = ppost
                     }
                 }
             }
-            
+        } else if segue.identifier == Constants.ShowRequestSegue {
+            if let view = sender as? MKAnnotationView {
+                if let hpost = view.annotation as? HelpPost {
+                    if let destVC = segue.destinationViewController as? RequestViewController {
+                        destVC.helpPost = hpost
+                    }
+                }
+            }
         }
     }
 

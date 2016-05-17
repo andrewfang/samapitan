@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.appBackgroundColor()
         self.requests = []
     }
     

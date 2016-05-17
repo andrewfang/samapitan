@@ -25,6 +25,14 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.dataSource = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100.0
+        
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .Done, target: self, action: Selector("showSettings"))
+    }
+    
+    private func showSettings() {
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

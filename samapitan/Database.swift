@@ -14,6 +14,7 @@ class Database {
     enum ChatOwner {
         case Me
         case NotMe
+        case Joined
     }
     struct ChatMessage {
         var textBody: String
@@ -60,9 +61,9 @@ class Database {
         
     ]
     
-    
     static var Chats:[String:[ChatMessage]] = [
-        "Translator Needed - Farsi": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: "Andrew"),
+        "Translator Needed - Farsi": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: ""),
+                                    ChatMessage(textBody: "Timon joined the chat", owner: .Joined, ownerName: ""),
                                       ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")]
     ]
 }

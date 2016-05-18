@@ -30,7 +30,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         self.title = "View Requests"
         
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
 
         self.pendingRequests = Database.PendingRequests
@@ -68,10 +68,16 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         switch (indexPath.section) {
         case RequestSections.Pending.rawValue:
             cell.contentLabel.text = self.pendingRequests[indexPath.item].titleString
+            cell.colorView.backgroundColor = self.pendingRequests[indexPath.item].color
+            cell.timeLabel.text = self.pendingRequests[indexPath.item].timePosted
         case RequestSections.RespondedTo.rawValue:
             cell.contentLabel.text = self.respondedToRequests[indexPath.item].titleString
+            cell.colorView.backgroundColor = self.respondedToRequests[indexPath.item].color
+            cell.timeLabel.text = self.respondedToRequests[indexPath.item].timePosted
         case RequestSections.AroundMe.rawValue:
             cell.contentLabel.text = self.otherRequests[indexPath.item].titleString
+            cell.colorView.backgroundColor = self.otherRequests[indexPath.item].color
+            cell.timeLabel.text = self.otherRequests[indexPath.item].timePosted
         default:
             break
         }

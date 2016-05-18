@@ -28,13 +28,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var locationManager:CLLocationManager!
     var posts:[HelpPost]!
     var people:[PeoplePost]!
+    var firstLoad:Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Samapitan"
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         self.setupLocationManager()
         self.people = Database.PeoplePinsToLoad
     }
@@ -44,7 +45,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         self.addAnnotations()
@@ -72,28 +73,45 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if let _ = annotation as? HelpPost {
             view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.PostPin)
             if (view == nil) {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.PostPin)
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.PostPin)
+            }
                 view.canShowCallout = true
-                if let a = view as? MKPinAnnotationView,
-                    let hp = annotation as? HelpPost {
-                    a.pinTintColor = hp.color
+                if let hp = annotation as? HelpPost {
+                    switch (hp.urgency) {
+                    case HelpPost.Urgency.Immediately:
+                        view.image = UIImage(named: "helpred")
+                    case HelpPost.Urgency.ASAP:
+                        view.image = UIImage(named: "helporange")
+                    case HelpPost.Urgency.Later:
+                        view.image = UIImage(named: "helpgreen")
                 }
                 view.leftCalloutAccessoryView = nil
                 view.rightCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
             } else {
                 view.annotation = annotation
+                if let hp = annotation as? HelpPost {
+                    switch (hp.urgency) {
+                    case HelpPost.Urgency.Immediately:
+                        view.image = UIImage(named: "helpred")
+                    case HelpPost.Urgency.ASAP:
+                        view.image = UIImage(named: "helporange")
+                    case HelpPost.Urgency.Later:
+                        view.image = UIImage(named: "helpgreen")
+                    }
+                }
             }
         } else {
             view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.PersonPin)
             if (view == nil) {
-                view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.PersonPin)
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.PersonPin)
                 view.canShowCallout = true
-                view.image = UIImage(named: "personPin")
+                view.image = UIImage(named: "personpin")
                 view.calloutOffset = CGPointMake(0, 0)
                 view.rightCalloutAccessoryView = nil
                 view.leftCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
             } else {
                 view.annotation = annotation
+                view.image = UIImage(named: "personpin")
             }
         }
         return view
@@ -170,11 +188,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(locationObj.coordinate)
             NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.latitude, forKey: "lat")
             NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.longitude, forKey: "long")
-            self.mapView.setCenterCoordinate(locationObj.coordinate, animated: true)
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: locationObj.coordinate, span: span)
-            self.mapView.setRegion(region, animated: true)
-            
+            if (firstLoad) {
+                firstLoad = false
+                self.mapView.setCenterCoordinate(locationObj.coordinate, animated: true)
+                let span = MKCoordinateSpanMake(0.05, 0.05)
+                let region = MKCoordinateRegion(center: locationObj.coordinate, span: span)
+                self.mapView.setRegion(region, animated: true)
+            }
         }
     }
     

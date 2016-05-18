@@ -12,4 +12,6 @@ class BorderedTableViewCell: UITableViewCell {
 
     @IBOutlet weak var border:UIView!
     @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var timeLabel: UILabel!
 }

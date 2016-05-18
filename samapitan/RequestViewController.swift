@@ -68,11 +68,15 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         case HelpPost.RequestType.Other:
             setupJoinView()
         }
+        
+        self.textInputView.backgroundColor = UIColor.appTabBarColor()
+        self.wantToHelpView.backgroundColor = UIColor.appTabBarColor()
     }
     
     private func setupChat() {
         self.wantToHelpView.hidden = true
         self.textInputView.hidden = false
+        
     }
     
     private func setupJoinView() {

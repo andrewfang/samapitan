@@ -26,23 +26,25 @@ class HelpPost: NSObject, MKAnnotation {
     var subtitleString:String!
     var descriptionString: String!
     var coord:CLLocationCoordinate2D!
-    var urgency: Urgency!
+    var urgency: Urgency
     var color: UIColor!
     var membersHelpingOut:[PeoplePost]!
     var type:RequestType
+    var timePosted: String!
 
-    init(coord:CLLocationCoordinate2D, title:String, description:String, urgency:Urgency, type:RequestType, membersHelpingOut:[PeoplePost]) {
+    init(coord:CLLocationCoordinate2D, title:String, description:String, urgency:Urgency, type:RequestType, timePosted:String, membersHelpingOut:[PeoplePost]) {
         self.coord = coord
         self.titleString = title
         self.subtitleString = ""
         self.urgency = urgency
         self.type = type
+        self.timePosted = timePosted
         self.descriptionString = description
         switch (urgency) {
         case .ASAP:
             self.color = UIColor.appOrange()
         case .Later:
-            self.color = UIColor.greenColor()
+            self.color = UIColor.appGreen()
         case .Immediately:
             self.color = UIColor.appRed()
         }

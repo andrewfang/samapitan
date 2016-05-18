@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -38,17 +39,40 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="B4E-aC-HnX">
-                                                    <rect key="frame" x="18" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="53" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHm-Pt-jiI">
+                                                    <rect key="frame" x="18" y="12" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="0.97647058819999999" green="0.1176470588" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="DHm-Pt-jiI" secondAttribute="height" multiplier="1:1" id="2xO-R2-mUf"/>
+                                                        <constraint firstAttribute="width" constant="20" id="w3p-jh-BMC"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQ8-RL-hcy">
+                                                    <rect key="frame" x="528" y="15" width="31" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Rrl-fg-xFc" firstAttribute="centerY" secondItem="49k-lK-EfJ" secondAttribute="centerY" id="3mf-LW-RMR"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="B4E-aC-HnX" secondAttribute="leading" constant="-10" id="Ky2-9O-yAm"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="B4E-aC-HnX" secondAttribute="leading" constant="-45" id="Ky2-9O-yAm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PQ8-RL-hcy" secondAttribute="trailing" id="LMd-ig-jK8"/>
+                                                <constraint firstItem="DHm-Pt-jiI" firstAttribute="leading" secondItem="49k-lK-EfJ" secondAttribute="leadingMargin" constant="10" id="Xvz-Id-i4p"/>
+                                                <constraint firstItem="DHm-Pt-jiI" firstAttribute="centerY" secondItem="49k-lK-EfJ" secondAttribute="centerY" id="eGb-iE-0hf"/>
                                                 <constraint firstItem="Rrl-fg-xFc" firstAttribute="width" secondItem="49k-lK-EfJ" secondAttribute="width" multiplier="0.75" id="jIo-Xy-XfS"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="B4E-aC-HnX" secondAttribute="trailing" constant="8" id="k0s-gE-z87"/>
+                                                <constraint firstItem="PQ8-RL-hcy" firstAttribute="centerY" secondItem="49k-lK-EfJ" secondAttribute="centerY" id="qGL-Rp-Riz"/>
                                                 <constraint firstItem="Rrl-fg-xFc" firstAttribute="centerX" secondItem="49k-lK-EfJ" secondAttribute="centerX" id="sRZ-fL-2ec"/>
                                                 <constraint firstItem="B4E-aC-HnX" firstAttribute="centerY" secondItem="49k-lK-EfJ" secondAttribute="centerY" id="v8d-wc-L56"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Rrl-fg-xFc" secondAttribute="bottom" constant="-8" id="z3g-zn-Mbb"/>
@@ -61,7 +85,9 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="border" destination="Rrl-fg-xFc" id="LH3-Ie-rL6"/>
+                                            <outlet property="colorView" destination="DHm-Pt-jiI" id="XjQ-ft-qPX"/>
                                             <outlet property="contentLabel" destination="B4E-aC-HnX" id="8ma-HU-MDc"/>
+                                            <outlet property="timeLabel" destination="PQ8-RL-hcy" id="2Ct-XC-Bq2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

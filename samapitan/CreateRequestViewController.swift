@@ -15,7 +15,7 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
         self.tableView.dataSource = self
@@ -61,11 +61,19 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         if lat != long {
             location = CLLocationCoordinate2D(latitude: lat, longitude: long)
         }
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Hour,.Minute], fromDate: date)
+        let hour = components.hour
+        let minutes = components.minute
+        
         Database.PendingRequests.append(HelpPost(coord: location,
             title: title,
             description: desc,
             urgency: urgency,
             type: HelpPost.RequestType.MyPending,
+            timePosted: "\(hour):\(minutes)",
             membersHelpingOut: []))
         
         Database.Chats[title] = [Database.ChatMessage(textBody: desc, owner: .Me, ownerName: "")]

@@ -47,6 +47,7 @@ class Database {
             description: "We need help? He seems to need help urgently.",
             urgency: HelpPost.Urgency.Later,
             type: HelpPost.RequestType.Other,
+            timePosted: "13:37",
             membersHelpingOut: [Database.PeoplePinsToLoad[1]])
     ]
     
@@ -56,6 +57,7 @@ class Database {
             description: "We need help communicating with a refugee. He seems to need help urgently.",
             urgency: HelpPost.Urgency.Immediately,
             type: HelpPost.RequestType.MyPending,
+            timePosted: "10:37",
             membersHelpingOut: [Database.PeoplePinsToLoad[0]])
     ]
     

@@ -246,6 +246,27 @@
                                             <outlet property="longLabel" destination="lAc-wt-S41" id="kS1-21-QK2"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonCell" id="DZ4-nQ-L3s" customClass="ButtonTableViewCell" customModule="samapitan" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="204" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DZ4-nQ-L3s" id="v5t-Pl-O8c">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O96-Uh-rTn">
+                                                    <rect key="frame" x="277" y="7" width="46" height="30"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="O96-Uh-rTn" firstAttribute="centerY" secondItem="v5t-Pl-O8c" secondAttribute="centerY" id="7az-3I-SKO"/>
+                                                <constraint firstItem="O96-Uh-rTn" firstAttribute="centerX" secondItem="v5t-Pl-O8c" secondAttribute="centerX" id="ZcX-ZF-yp8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="actionButton" destination="O96-Uh-rTn" id="Lc6-dn-kv0"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

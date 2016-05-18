@@ -33,6 +33,7 @@
 		49EAF51A1CEBD6A800792503 /* RequestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */; };
 		49EAF51C1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF51B1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift */; };
 		49EAF51E1CEBE74900792503 /* LongTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF51D1CEBE74900792503 /* LongTextTableViewCell.swift */; };
+		49EAF5201CEBEC1B00792503 /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF51F1CEBEC1B00792503 /* ButtonTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSettingsViewController.swift; sourceTree = "<group>"; };
 		49EAF51B1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF51D1CEBE74900792503 /* LongTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongTextTableViewCell.swift; sourceTree = "<group>"; };
+		49EAF51F1CEBEC1B00792503 /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */,
 				49EAF51B1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift */,
 				49EAF51D1CEBE74900792503 /* LongTextTableViewCell.swift */,
+				49EAF51F1CEBEC1B00792503 /* ButtonTableViewCell.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				4965891D1CE30ABD006BC319 /* PeoplePost.swift in Sources */,
 				496589081CE28DA4006BC319 /* ViewController.swift in Sources */,
 				496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */,
+				49EAF5201CEBEC1B00792503 /* ButtonTableViewCell.swift in Sources */,
 				496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */,
 				4965891B1CE30615006BC319 /* SettingsViewController.swift in Sources */,
 				49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */,

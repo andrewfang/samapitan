@@ -28,11 +28,7 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "+", style: .Done, target: self, action: Selector("showSettings"))
-    }
-    
-    private func showSettings() {
-        
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .Done, target: self, action: #selector(showSettings))]
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -46,6 +42,8 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cellToDeque = ""
         if chatMessage[indexPath.item].owner == Database.ChatOwner.Me {
             cellToDeque = "meCell"
+        } else if chatMessage[indexPath.item].owner == Database.ChatOwner.Joined {
+            cellToDeque = "joinedCell"
         } else {
             cellToDeque = "notMeCell"
         }
@@ -59,5 +57,17 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         return cell
+    }
+    
+    func showSettings() {
+        self.performSegueWithIdentifier("showSettingsSegue", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSettingsSegue" {
+            if let settingsvc = segue.destinationViewController as? RequestSettingsViewController {
+                settingsvc.post = helpPost
+            }
+        }
     }
 }

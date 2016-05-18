@@ -10,10 +10,10 @@ import UIKit
 import MapKit
 
 class HelpPost: NSObject, MKAnnotation {
-    enum Urgency {
-        case Later
-        case ASAP
-        case Immediately
+    enum Urgency: Int {
+        case Later = 0
+        case ASAP = 1
+        case Immediately = 2
     }
     
     var titleString:String!

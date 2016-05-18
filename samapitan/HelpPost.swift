@@ -16,6 +16,12 @@ class HelpPost: NSObject, MKAnnotation {
         case Immediately = 2
     }
     
+    enum RequestType {
+        case MyPending
+        case MyResponded
+        case Other
+    }
+    
     var titleString:String!
     var subtitleString:String!
     var descriptionString: String!
@@ -23,12 +29,14 @@ class HelpPost: NSObject, MKAnnotation {
     var urgency: Urgency!
     var color: UIColor!
     var membersHelpingOut:[PeoplePost]!
+    var type:RequestType
 
-    init(coord:CLLocationCoordinate2D, title:String, description:String, urgency:Urgency, membersHelpingOut:[PeoplePost]) {
+    init(coord:CLLocationCoordinate2D, title:String, description:String, urgency:Urgency, type:RequestType, membersHelpingOut:[PeoplePost]) {
         self.coord = coord
         self.titleString = title
         self.subtitleString = ""
         self.urgency = urgency
+        self.type = type
         self.descriptionString = description
         switch (urgency) {
         case .ASAP:

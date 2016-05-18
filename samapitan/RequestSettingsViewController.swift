@@ -73,7 +73,12 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return headerSections.count
+        if (post.type == HelpPost.RequestType.MyPending) {
+            return headerSections.count
+        } else {
+            return headerSections.count - 1
+        }
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,6 +108,11 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = post.urgency.rawValue
+                if (post.type == .MyPending) {
+                    cell.urgencySwitch.userInteractionEnabled = true
+                } else {
+                    cell.urgencySwitch.userInteractionEnabled = false
+                }
             }
             return cell
         case Sections.People.rawValue:

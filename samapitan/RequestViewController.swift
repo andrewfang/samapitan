@@ -9,15 +9,8 @@
 import UIKit
 
 class RequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    enum RequestType {
-        case MyPending
-        case RespondedTo
-        case Other
-    }
     
     var helpPost:HelpPost!
-    var type:RequestType = RequestType.MyPending
     var chatMessage:[Database.ChatMessage]!
     private var keyboardVisible = false
     
@@ -67,12 +60,12 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         
-        switch (type) {
-        case RequestType.MyPending:
+        switch (helpPost.type) {
+        case HelpPost.RequestType.MyPending:
             fallthrough
-        case RequestType.RespondedTo:
+        case HelpPost.RequestType.MyResponded:
             setupChat()
-        case RequestType.Other:
+        case HelpPost.RequestType.Other:
             setupJoinView()
         }
     }

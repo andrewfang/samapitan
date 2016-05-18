@@ -107,13 +107,10 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
                 switch (indexPath.section) {
                 case RequestSections.Pending.rawValue:
                     requestvc.helpPost = self.pendingRequests[indexPath.item]
-                    requestvc.type = RequestViewController.RequestType.MyPending
                 case RequestSections.RespondedTo.rawValue:
                     requestvc.helpPost = self.respondedToRequests[indexPath.item]
-                    requestvc.type = RequestViewController.RequestType.RespondedTo
                 case RequestSections.AroundMe.rawValue:
                     requestvc.helpPost = self.otherRequests[indexPath.item]
-                    requestvc.type = RequestViewController.RequestType.Other
                 default:
                     break
                 }

@@ -65,6 +65,7 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             title: title,
             description: desc,
             urgency: urgency,
+            type: HelpPost.RequestType.MyPending,
             membersHelpingOut: []))
         
         Database.Chats[title] = [Database.ChatMessage(textBody: desc, owner: .Me, ownerName: "")]

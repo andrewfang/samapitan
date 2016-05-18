@@ -64,6 +64,9 @@ class Database {
     static var Chats:[String:[ChatMessage]] = [
         "Translator Needed - Farsi": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: ""),
                                     ChatMessage(textBody: "Timon joined the chat", owner: .Joined, ownerName: ""),
-                                      ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")]
+                                      ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")],
+        "Burrito needed": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: ""),
+            ChatMessage(textBody: "Timon joined the chat", owner: .Joined, ownerName: ""),
+            ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")]
     ]
 }

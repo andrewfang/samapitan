@@ -19,8 +19,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-ca-cRv">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zwT-6h-sKV">
+                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diZ-Cp-bJ5">
+                                        <rect key="frame" x="556" y="15" width="34" height="30"/>
+                                        <state key="normal" title="send">
+                                            <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WS7-vG-Y7i">
+                                        <rect key="frame" x="20" y="15" width="526" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="WS7-vG-Y7i" firstAttribute="centerY" secondItem="zwT-6h-sKV" secondAttribute="centerY" id="0nC-hy-6gz"/>
+                                    <constraint firstItem="diZ-Cp-bJ5" firstAttribute="centerY" secondItem="zwT-6h-sKV" secondAttribute="centerY" id="5Qc-hc-HZ1"/>
+                                    <constraint firstItem="WS7-vG-Y7i" firstAttribute="leading" secondItem="zwT-6h-sKV" secondAttribute="leading" constant="20" id="BKb-Dt-u6A"/>
+                                    <constraint firstAttribute="trailing" secondItem="diZ-Cp-bJ5" secondAttribute="trailing" constant="10" id="LK2-vs-qON"/>
+                                    <constraint firstItem="diZ-Cp-bJ5" firstAttribute="leading" secondItem="WS7-vG-Y7i" secondAttribute="trailing" constant="10" id="hVF-uA-917"/>
+                                    <constraint firstAttribute="height" constant="60" id="u60-YE-W32"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hj-Yd-cht">
+                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-WE-Zig">
+                                        <rect key="frame" x="254" y="15" width="92" height="30"/>
+                                        <state key="normal" title="I want to help">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="joinChat" destination="3Cx-UA-SY9" eventType="touchUpInside" id="Hey-G3-2z4"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Gzj-WE-Zig" firstAttribute="centerX" secondItem="6Hj-Yd-cht" secondAttribute="centerX" id="Hrx-ao-TH4"/>
+                                    <constraint firstAttribute="height" constant="60" id="OVD-PO-eAs"/>
+                                    <constraint firstItem="Gzj-WE-Zig" firstAttribute="centerY" secondItem="6Hj-Yd-cht" secondAttribute="centerY" id="asU-1R-5j1"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-ca-cRv">
+                                <rect key="frame" x="0.0" y="20" width="600" height="520"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="meCell" id="yND-9p-zMX" customClass="ChatTableViewCell" customModule="samapitan" customModuleProvider="target">
@@ -62,7 +107,7 @@
                                         <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSs-Vd-eFz" id="nuS-cN-wcv">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label with a lot of text lorem ipsum and there is more text is what isl flkwjefawefw .falff andlkf there is ." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hg-Va-O8s" customClass="UIPaddedLabel" customModule="samapitan" customModuleProvider="target">
@@ -149,14 +194,37 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6Hj-Yd-cht" firstAttribute="centerX" secondItem="IpO-Pi-dM6" secondAttribute="centerX" id="7H4-EB-hN4"/>
+                            <constraint firstItem="zwT-6h-sKV" firstAttribute="centerX" secondItem="IpO-Pi-dM6" secondAttribute="centerX" id="BNW-xV-F8M"/>
                             <constraint firstItem="weg-ca-cRv" firstAttribute="centerX" secondItem="IpO-Pi-dM6" secondAttribute="centerX" id="Cu0-jw-cy7"/>
-                            <constraint firstItem="weg-ca-cRv" firstAttribute="height" secondItem="IpO-Pi-dM6" secondAttribute="height" id="b1k-VM-W1b"/>
+                            <constraint firstItem="6Hj-Yd-cht" firstAttribute="width" secondItem="IpO-Pi-dM6" secondAttribute="width" id="G2Z-3V-0BE"/>
+                            <constraint firstItem="6Hj-Yd-cht" firstAttribute="top" secondItem="weg-ca-cRv" secondAttribute="bottom" id="NXu-lw-mIq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zwT-6h-sKV" secondAttribute="trailing" id="OIb-pQ-J7i"/>
+                            <constraint firstItem="zwT-6h-sKV" firstAttribute="top" secondItem="weg-ca-cRv" secondAttribute="bottom" id="W10-y8-Wen"/>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="height" secondItem="IpO-Pi-dM6" secondAttribute="height" multiplier="0.9" id="b1k-VM-W1b"/>
                             <constraint firstItem="weg-ca-cRv" firstAttribute="centerY" secondItem="IpO-Pi-dM6" secondAttribute="centerY" id="dIq-Te-JCK"/>
                             <constraint firstItem="weg-ca-cRv" firstAttribute="width" secondItem="IpO-Pi-dM6" secondAttribute="width" id="dst-SA-d0D"/>
+                            <constraint firstItem="yTH-U1-COl" firstAttribute="top" secondItem="zwT-6h-sKV" secondAttribute="bottom" id="hOI-0c-tGT"/>
+                            <constraint firstItem="yTH-U1-COl" firstAttribute="top" secondItem="6Hj-Yd-cht" secondAttribute="bottom" id="kUS-wI-lb6"/>
+                            <constraint firstItem="weg-ca-cRv" firstAttribute="top" secondItem="WXH-CX-3Rh" secondAttribute="bottom" id="rVL-Rn-LPv"/>
+                            <constraint firstItem="zwT-6h-sKV" firstAttribute="leading" secondItem="IpO-Pi-dM6" secondAttribute="leadingMargin" id="slm-ix-m0c"/>
+                            <constraint firstItem="zwT-6h-sKV" firstAttribute="width" secondItem="IpO-Pi-dM6" secondAttribute="width" id="uMa-qi-M2b"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="b1k-VM-W1b"/>
+                                <exclude reference="dIq-Te-JCK"/>
+                                <exclude reference="OIb-pQ-J7i"/>
+                                <exclude reference="slm-ix-m0c"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="weg-ca-cRv" id="MUn-QH-kYE"/>
+                        <outlet property="textInputView" destination="zwT-6h-sKV" id="Byk-kn-8s4"/>
+                        <outlet property="textLayoutGuide" destination="hOI-0c-tGT" id="w0J-Yo-Cfb"/>
+                        <outlet property="wantToHelpButton" destination="Gzj-WE-Zig" id="wQW-xC-uIj"/>
+                        <outlet property="wantToHelpView" destination="6Hj-Yd-cht" id="6CH-vA-01L"/>
                         <segue destination="hkq-vj-oDu" kind="show" identifier="showSettingsSegue" id="Ls5-Gc-kqV"/>
                     </connections>
                 </viewController>

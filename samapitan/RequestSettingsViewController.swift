@@ -28,6 +28,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
     let headerSections = ["TITLE", "DESCRIPTION", "URGENCY", "PEOPLE HELPING OUT", "Buttons"]

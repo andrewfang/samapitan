@@ -61,14 +61,17 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("request cell", forIndexPath: indexPath)
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("request cell", forIndexPath: indexPath) as? BorderedTableViewCell else {
+            return tableView.dequeueReusableCellWithIdentifier("request cell", forIndexPath: indexPath)
+        }
+        
         switch (indexPath.section) {
         case RequestSections.Pending.rawValue:
-            cell.textLabel?.text = self.pendingRequests[indexPath.item].titleString
+            cell.contentLabel.text = self.pendingRequests[indexPath.item].titleString
         case RequestSections.RespondedTo.rawValue:
-            cell.textLabel?.text = self.respondedToRequests[indexPath.item].titleString
+            cell.contentLabel.text = self.respondedToRequests[indexPath.item].titleString
         case RequestSections.AroundMe.rawValue:
-            cell.textLabel?.text = self.otherRequests[indexPath.item].titleString
+            cell.contentLabel.text = self.otherRequests[indexPath.item].titleString
         default:
             break
         }

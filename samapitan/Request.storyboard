@@ -27,6 +27,9 @@
                                         <state key="normal" title="send">
                                             <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendMessage" destination="3Cx-UA-SY9" eventType="touchUpInside" id="XGi-zJ-J5H"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="message" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WS7-vG-Y7i">
                                         <rect key="frame" x="20" y="15" width="526" height="30"/>
@@ -110,8 +113,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label with a lot of text lorem ipsum and there is more text is what isl flkwjefawefw .falff andlkf there is ." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hg-Va-O8s" customClass="UIPaddedLabel" customModule="samapitan" customModuleProvider="target">
-                                                    <rect key="frame" x="18" y="11" width="238" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label with a lot of text lorem ipsum and there is more text is what isl flkwjefawefw .falff andlkf there is ." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hg-Va-O8s" customClass="UIPaddedLabel" customModule="samapitan" customModuleProvider="target">
+                                                    <rect key="frame" x="18" y="11" width="244" height="21"/>
                                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="244" id="NnV-Ej-BGO"/>
@@ -223,6 +226,7 @@
                         <outlet property="tableView" destination="weg-ca-cRv" id="MUn-QH-kYE"/>
                         <outlet property="textInputView" destination="zwT-6h-sKV" id="Byk-kn-8s4"/>
                         <outlet property="textLayoutGuide" destination="hOI-0c-tGT" id="w0J-Yo-Cfb"/>
+                        <outlet property="textView" destination="WS7-vG-Y7i" id="ysC-Zh-0YE"/>
                         <outlet property="wantToHelpButton" destination="Gzj-WE-Zig" id="wQW-xC-uIj"/>
                         <outlet property="wantToHelpView" destination="6Hj-Yd-cht" id="6CH-vA-01L"/>
                         <segue destination="hkq-vj-oDu" kind="show" identifier="showSettingsSegue" id="Ls5-Gc-kqV"/>
@@ -263,8 +267,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ozL-dT-nZn">
-                                                    <rect key="frame" x="171.5" y="7" width="257" height="29"/>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ozL-dT-nZn">
+                                                    <rect key="frame" x="171.5" y="8" width="257" height="29"/>
                                                     <segments>
                                                         <segment title="Later"/>
                                                         <segment title="ASAP"/>

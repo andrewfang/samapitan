@@ -36,12 +36,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
         self.navigationController?.navigationBar.translucent = true
         self.setupLocationManager()
-        self.posts = []
-        self.posts.appendContentsOf(Database.AllRequests)
-        self.posts.appendContentsOf(Database.PendingRequests)
-        self.posts.appendContentsOf(Database.RespondedToRequests)
         self.people = Database.PeoplePinsToLoad
-        self.addAnnotations()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,9 +46,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.addAnnotations()
     }
     
     private func addAnnotations() {
+        self.posts = []
+        self.posts.appendContentsOf(Database.AllRequests)
+        self.posts.appendContentsOf(Database.PendingRequests)
+        self.posts.appendContentsOf(Database.RespondedToRequests)
+        
         self.mapView?.addAnnotations(self.posts)
         self.mapView?.showAnnotations(self.posts, animated: true)
         
@@ -166,6 +168,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let locationObj = locations.last {
             print(locationObj.coordinate)
+            NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.latitude, forKey: "lat")
+            NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.longitude, forKey: "long")
             self.mapView.setCenterCoordinate(locationObj.coordinate, animated: true)
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: locationObj.coordinate, span: span)

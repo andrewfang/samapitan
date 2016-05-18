@@ -26,6 +26,7 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var textInputView: UIView!
     @IBOutlet weak var wantToHelpView: UIView!
     @IBOutlet weak var wantToHelpButton: UIButton!
+    @IBOutlet weak var textView: UITextField!
     
     @IBAction func joinChat() {
         
@@ -38,6 +39,15 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.wantToHelpView.hidden = true
                 self.wantToHelpView.alpha = 1
         })
+    }
+    
+    @IBAction func sendMessage() {
+        if (self.textView.text?.characters.count > 0) {
+            
+            self.chatMessage.append(Database.ChatMessage(textBody: self.textView.text!, owner: .Me, ownerName: ""))
+            self.textView.text = nil
+            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
+        }
     }
 
     override func viewDidLoad() {
@@ -53,9 +63,9 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .Done, target: self, action: #selector(showSettings))]
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillChange:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
         
         switch (type) {
         case RequestType.MyPending:
@@ -114,6 +124,14 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func keyboardWillShow(notification: NSNotification) {
         self.keyboardVisible = true
+        
+        if let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
+            UIView.animateWithDuration(0.3, animations: {
+                self.textLayoutGuide.constant = keyboardSize.height
+            })
+        }
+        
+        
     }
     
     func keyboardWillChange(notification:NSNotification) {

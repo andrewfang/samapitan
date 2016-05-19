@@ -28,6 +28,8 @@
 		4965896B1CE47E19006BC319 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */; };
 		4965896D1CE48F4B006BC319 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4965896C1CE48F4B006BC319 /* RequestViewController.swift */; };
 		4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4965896E1CE48F6E006BC319 /* Request.storyboard */; };
+		496D76261CED49C200E80DBA /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D76251CED49C200E80DBA /* InterestViewController.swift */; };
+		496D76291CED49E000E80DBA /* Interest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496D76281CED49E000E80DBA /* Interest.storyboard */; };
 		49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5151CEB860300792503 /* ChatTableViewCell.swift */; };
 		49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */; };
 		49EAF51A1CEBD6A800792503 /* RequestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */; };
@@ -37,6 +39,7 @@
 		49EAF5261CEC6E0C00792503 /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5251CEC6E0C00792503 /* TextFieldTableViewCell.swift */; };
 		49EAF5281CEC6EEB00792503 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5271CEC6EEB00792503 /* TextViewTableViewCell.swift */; };
 		49EAF52A1CEC73EC00792503 /* BorderedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5291CEC73EC00792503 /* BorderedTableViewCell.swift */; };
+		49EAF52C1CED43A900792503 /* InterestPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF52B1CED43A900792503 /* InterestPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,8 @@
 		4965896A1CE47E19006BC319 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		4965896C1CE48F4B006BC319 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		4965896E1CE48F6E006BC319 /* Request.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Request.storyboard; sourceTree = "<group>"; };
+		496D76251CED49C200E80DBA /* InterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		496D76281CED49E000E80DBA /* Interest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interest.storyboard; sourceTree = "<group>"; };
 		49EAF5151CEB860300792503 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 		49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSettingsViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		49EAF5251CEC6E0C00792503 /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF5271CEC6EEB00792503 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF5291CEC73EC00792503 /* BorderedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTableViewCell.swift; sourceTree = "<group>"; };
+		49EAF52B1CED43A900792503 /* InterestPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 				496589071CE28DA4006BC319 /* ViewController.swift */,
 				496589091CE28DA4006BC319 /* Main.storyboard */,
 				496589661CE47930006BC319 /* Profile */,
+				496D76271CED49C900E80DBA /* Interest */,
 				4965895D1CE4465D006BC319 /* Settings */,
 				4965895A1CE4451F006BC319 /* Add new Request */,
 				496589591CE44511006BC319 /* View Requests */,
@@ -136,6 +143,7 @@
 			children = (
 				496589181CE2ED31006BC319 /* HelpPost.swift */,
 				4965891C1CE30ABD006BC319 /* PeoplePost.swift */,
+				49EAF52B1CED43A900792503 /* InterestPoint.swift */,
 			);
 			name = Annotation;
 			sourceTree = "<group>";
@@ -193,6 +201,15 @@
 				49EAF51F1CEBEC1B00792503 /* ButtonTableViewCell.swift */,
 			);
 			name = Request;
+			sourceTree = "<group>";
+		};
+		496D76271CED49C900E80DBA /* Interest */ = {
+			isa = PBXGroup;
+			children = (
+				496D76251CED49C200E80DBA /* InterestViewController.swift */,
+				496D76281CED49E000E80DBA /* Interest.storyboard */,
+			);
+			name = Interest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +274,7 @@
 				496589101CE28DA4006BC319 /* LaunchScreen.storyboard in Resources */,
 				4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */,
 				4965890D1CE28DA4006BC319 /* Assets.xcassets in Resources */,
+				496D76291CED49E000E80DBA /* Interest.storyboard in Resources */,
 				496589541CE443EC006BC319 /* Requests.storyboard in Resources */,
 				496589561CE44462006BC319 /* CreateRequest.storyboard in Resources */,
 				496589651CE4792C006BC319 /* Profile.storyboard in Resources */,
@@ -274,6 +292,7 @@
 				496589581CE44509006BC319 /* RequestsViewController.swift in Sources */,
 				4965895F1CE46A03006BC319 /* UIColor+sampaitan.swift in Sources */,
 				49EAF51E1CEBE74900792503 /* LongTextTableViewCell.swift in Sources */,
+				49EAF52C1CED43A900792503 /* InterestPoint.swift in Sources */,
 				4965896D1CE48F4B006BC319 /* RequestViewController.swift in Sources */,
 				49EAF51C1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift in Sources */,
 				49EAF5281CEC6EEB00792503 /* TextViewTableViewCell.swift in Sources */,
@@ -282,6 +301,7 @@
 				496589521CE3B92E006BC319 /* CreateRequestViewController.swift in Sources */,
 				4965891D1CE30ABD006BC319 /* PeoplePost.swift in Sources */,
 				496589081CE28DA4006BC319 /* ViewController.swift in Sources */,
+				496D76261CED49C200E80DBA /* InterestViewController.swift in Sources */,
 				496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */,
 				49EAF5201CEBEC1B00792503 /* ButtonTableViewCell.swift in Sources */,
 				496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */,

@@ -41,6 +41,14 @@ class Database {
             bio: "Stanford Student")
     ]
     
+    static var InterestPoints = [
+        InterestPoint(coord: CLLocationCoordinate2D(latitude: 37.37, longitude: -122.05),
+            title: "Disaster Tech Lab Base",
+            description: "HQ for DTL until June 2016",
+            photoUrl: "http://disastertechlab.org/wp-content/uploads/2015/02/Disaster-Tech-Lab-Logo-web_smallest.png"
+        )
+    ]
+    
     static var AllRequests = [
         HelpPost(coord: CLLocationCoordinate2D(latitude: 37.33, longitude: -122.06),
             title: "Burrito needed",

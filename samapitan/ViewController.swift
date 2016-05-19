@@ -14,8 +14,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     private struct Constants {
         static let PostPin = "PostPin"
         static let PersonPin = "PersonPin"
+        static let InterestPin = "InterestPin"
         static let ShowProfileSegue = "ShowProfileSegue"
         static let ShowRequestSegue = "ShowRequestSegue"
+        static let ShowInterestSegue = "ShowInterestSegue"
         static let ThumbnailFrame = CGRect(x: 0, y: 0, width: 59, height: 59)
     }
 
@@ -28,6 +30,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var locationManager:CLLocationManager!
     var posts:[HelpPost]!
     var people:[PeoplePost]!
+    var interestPoints:[InterestPoint]!
     var firstLoad:Bool = true
     
     override func viewDidLoad() {
@@ -38,6 +41,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.translucent = false
         self.setupLocationManager()
         self.people = Database.PeoplePinsToLoad
+        self.interestPoints = Database.InterestPoints
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,10 +62,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.posts.appendContentsOf(Database.RespondedToRequests)
         
         self.mapView?.addAnnotations(self.posts)
-        self.mapView?.showAnnotations(self.posts, animated: true)
-        
         self.mapView?.addAnnotations(self.people)
-        self.mapView?.showAnnotations(self.people, animated: true)
+        self.mapView?.addAnnotations(self.interestPoints)
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -96,7 +98,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     }
                 }
             }
-        } else {
+        } else if let _ = annotation as? PeoplePost {
             view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.PersonPin)
             if (view == nil) {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.PersonPin)
@@ -108,6 +110,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             } else {
                 view.annotation = annotation
                 view.image = UIImage(named: "personpin")
+            }
+        } else if let _ = annotation as? InterestPoint {
+            view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.InterestPin)
+            if (view == nil) {
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.InterestPin)
+                view.canShowCallout = true
+                view.image = UIImage(named: "interestPoint")
+                view.calloutOffset = CGPointMake(0, 0)
+                view.rightCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
+                view.leftCalloutAccessoryView = nil
+            } else {
+                view.annotation = annotation
+                view.image = UIImage(named: "interestPoint")
             }
         }
         return view
@@ -129,9 +144,28 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
         
-        if let thumbnailImageView = view.rightCalloutAccessoryView as? UIButton,
-            let _ = view.annotation as? HelpPost {
-            thumbnailImageView.setImage(UIImage(named: "help"), forState: .Normal)
+        if let thumbnailImageView = view.rightCalloutAccessoryView as? UIButton {
+            if let hp = view.annotation as? HelpPost {
+                switch (hp.urgency) {
+                case .Urgent:
+                    thumbnailImageView.setImage(UIImage(named: "blockRed"), forState: .Normal)
+                case .NotUrgent:
+                    thumbnailImageView.setImage(UIImage(named: "blockGreen"), forState: .Normal)
+                default:
+                    break
+                }
+                
+            } else if let ipoint = view.annotation as? InterestPoint {
+                if let url = NSURL(string: ipoint.photoUrl) {
+                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
+                        if let data = NSData(contentsOfURL: url) {
+                            NSOperationQueue.mainQueue().addOperationWithBlock({
+                                thumbnailImageView.setImage(UIImage(data:data), forState: .Normal)
+                            })
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -139,7 +173,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if control == view.leftCalloutAccessoryView {
             performSegueWithIdentifier(Constants.ShowProfileSegue, sender: view)
         } else if control == view.rightCalloutAccessoryView {
-            performSegueWithIdentifier(Constants.ShowRequestSegue, sender: view)
+            if let _ = view.annotation as? HelpPost {
+                performSegueWithIdentifier(Constants.ShowRequestSegue, sender: view)
+            } else if let _ = view.annotation as? InterestPoint {
+                performSegueWithIdentifier(Constants.ShowInterestSegue, sender: view)
+            }
         }
     }
     
@@ -157,6 +195,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 if let hpost = view.annotation as? HelpPost {
                     if let destVC = segue.destinationViewController as? RequestViewController {
                         destVC.helpPost = hpost
+                    }
+                }
+            }
+        } else if segue.identifier == Constants.ShowInterestSegue {
+            if let view = sender as? MKAnnotationView {
+                if let ipost = view.annotation as? InterestPoint {
+                    if let destVC = segue.destinationViewController as? InterestViewController {
+                        destVC.interestPoint = ipost
                     }
                 }
             }

@@ -8,28 +8,99 @@
 
 import UIKit
 
-class InterestViewController: UIViewController {
+class InterestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    var interestPoint: InterestPoint!
+    @IBOutlet weak var tableView: UITableView!
+    
+    enum Sections:Int {
+        case Title = 0
+        case Desc = 1
+        case Buttons = 2
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = interestPoint.titleString
+        self.navigationController?.navigationBar.topItem?.title = ""
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.backgroundColor = UIColor.appBackgroundColor()
     }
-    */
-
+    
+    let headerSections = ["TITLE", "DESCRIPTION", "Buttons"]
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if (section < headerSections.count - 1) {
+            let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+            
+            let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
+            label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+            label.text = self.headerSections[section]
+            view.addSubview(label)
+            view.backgroundColor = UIColor.appBackgroundColor()
+            
+            return view
+        } else {
+            return UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == Sections.Desc.rawValue {
+            return 100
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return headerSections.count
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        switch (indexPath.section) {
+        case Sections.Title.rawValue:
+            let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
+            cell.textLabel?.text = interestPoint.titleString
+            return cell
+        case Sections.Desc.rawValue:
+            let cell = tableView.dequeueReusableCellWithIdentifier("longTextCell", forIndexPath: indexPath)
+            if let cell = cell as? LongTextTableViewCell {
+                cell.longLabel.text = interestPoint.descriptionString
+            }
+            return cell
+        case Sections.Buttons.rawValue:
+            let cell = tableView.dequeueReusableCellWithIdentifier("buttonCell", forIndexPath: indexPath)
+            cell.backgroundColor = UIColor.appBackgroundColor()
+            if let cell = cell as? ButtonTableViewCell {
+                
+                cell.actionButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                cell.actionButton.layer.cornerRadius = 5.0
+                cell.actionButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
+                
+                switch (indexPath.item) {
+                case 0:
+                    cell.actionButton.setTitle("Remove Interest Point", forState: .Normal)
+                    cell.actionButton.backgroundColor = UIColor.appRed()
+                default:
+                    break
+                }
+            }
+            return cell
+        default:
+            return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+        }
+    }
+    
+    
 }

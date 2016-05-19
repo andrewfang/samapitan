@@ -76,6 +76,7 @@
                         <outlet property="mapView" destination="Ud9-fa-slX" id="4fI-W1-cap"/>
                         <segue destination="gEP-vt-8BY" kind="show" identifier="ShowProfileSegue" id="adc-AB-eG6"/>
                         <segue destination="BBC-H5-MuR" kind="show" identifier="ShowRequestSegue" id="7zV-N9-6CQ"/>
+                        <segue destination="4ov-SB-J92" kind="show" identifier="ShowInterestSegue" id="ciU-xO-yax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -89,6 +90,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5sK-4s-PaD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1396" y="1138"/>
+        </scene>
+        <!--Interest-->
+        <scene sceneID="LRU-9G-Jot">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Interest" id="4ov-SB-J92" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bir-2M-GOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1403" y="879"/>
         </scene>
         <!--Request-->
         <scene sceneID="iTK-og-N7Y">

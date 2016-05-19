@@ -11,9 +11,8 @@ import MapKit
 
 class HelpPost: NSObject, MKAnnotation {
     enum Urgency: Int {
-        case Later = 0
-        case ASAP = 1
-        case Immediately = 2
+        case NotUrgent = 0
+        case Urgent = 1
     }
     
     enum RequestType {
@@ -41,11 +40,9 @@ class HelpPost: NSObject, MKAnnotation {
         self.timePosted = timePosted
         self.descriptionString = description
         switch (urgency) {
-        case .ASAP:
-            self.color = UIColor.appOrange()
-        case .Later:
+        case .NotUrgent:
             self.color = UIColor.appGreen()
-        case .Immediately:
+        case .Urgent:
             self.color = UIColor.appRed()
         }
         

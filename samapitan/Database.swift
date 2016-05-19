@@ -45,7 +45,7 @@ class Database {
         HelpPost(coord: CLLocationCoordinate2D(latitude: 37.33, longitude: -122.06),
             title: "Burrito needed",
             description: "We need help? He seems to need help urgently.",
-            urgency: HelpPost.Urgency.Later,
+            urgency: HelpPost.Urgency.NotUrgent,
             type: HelpPost.RequestType.Other,
             timePosted: "13:37",
             membersHelpingOut: [Database.PeoplePinsToLoad[1]])
@@ -55,7 +55,7 @@ class Database {
         HelpPost(coord: CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04),
             title: "Translator Needed - Farsi",
             description: "We need help communicating with a refugee. He seems to need help urgently.",
-            urgency: HelpPost.Urgency.Immediately,
+            urgency: HelpPost.Urgency.Urgent,
             type: HelpPost.RequestType.MyPending,
             timePosted: "10:37",
             membersHelpingOut: [Database.PeoplePinsToLoad[0]])

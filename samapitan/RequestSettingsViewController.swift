@@ -108,8 +108,15 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = post.urgency.rawValue
+                switch (post.urgency) {
+                case .NotUrgent:
+                    cell.urgencySwitch.tintColor = UIColor.greenColor()
+                case .Urgent:
+                    cell.urgencySwitch.tintColor = UIColor.redColor()
+                }
                 if (post.type == .MyPending) {
                     cell.urgencySwitch.userInteractionEnabled = true
+                    cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), forControlEvents: .ValueChanged)
                 } else {
                     cell.urgencySwitch.userInteractionEnabled = false
                 }
@@ -142,6 +149,15 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             return cell
         default:
             return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+        }
+    }
+    
+    
+    func switchTapped(control:UISegmentedControl) {
+        if (control.selectedSegmentIndex == 0) {
+            control.tintColor = UIColor.appGreen()
+        } else if (control.selectedSegmentIndex == 1) {
+            control.tintColor = UIColor.appRed()
         }
     }
     

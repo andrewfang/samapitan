@@ -53,12 +53,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VAd-Mc-elJ">
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VAd-Mc-elJ">
                                                     <rect key="frame" x="171" y="8" width="257" height="29"/>
                                                     <segments>
-                                                        <segment title="Later"/>
-                                                        <segment title="ASAP"/>
-                                                        <segment title="Immedately"/>
+                                                        <segment title="Not Urgent"/>
+                                                        <segment title="Urgent"/>
                                                     </segments>
                                                 </segmentedControl>
                                             </subviews>

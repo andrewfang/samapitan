@@ -46,13 +46,11 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         var urgency:HelpPost.Urgency
         switch (switchCell.urgencySwitch.selectedSegmentIndex) {
         case 0:
-            urgency = HelpPost.Urgency.Later
+            urgency = HelpPost.Urgency.NotUrgent
         case 1:
-            urgency = HelpPost.Urgency.ASAP
-        case 2:
-            urgency = HelpPost.Urgency.Immediately
+            urgency = HelpPost.Urgency.Urgent
         default:
-            urgency = HelpPost.Urgency.Immediately
+            urgency = HelpPost.Urgency.Urgent
         }
         
         var location = CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04)
@@ -151,6 +149,8 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = 0
+                cell.urgencySwitch.tintColor = UIColor.appGreen()
+                cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), forControlEvents: .ValueChanged)
             }
             return cell
         default:
@@ -158,6 +158,12 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
 
-    
+    func switchTapped(control:UISegmentedControl) {
+        if (control.selectedSegmentIndex == 0) {
+            control.tintColor = UIColor.appGreen()
+        } else if (control.selectedSegmentIndex == 1) {
+            control.tintColor = UIColor.appRed()
+        }
+    }
 
 }

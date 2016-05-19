@@ -66,6 +66,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Rrl-fg-xFc" firstAttribute="centerY" secondItem="49k-lK-EfJ" secondAttribute="centerY" id="3mf-LW-RMR"/>
+                                                <constraint firstItem="PQ8-RL-hcy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="B4E-aC-HnX" secondAttribute="trailing" constant="8" id="Heg-Pm-yas"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="B4E-aC-HnX" secondAttribute="leading" constant="-45" id="Ky2-9O-yAm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="PQ8-RL-hcy" secondAttribute="trailing" id="LMd-ig-jK8"/>
                                                 <constraint firstItem="DHm-Pt-jiI" firstAttribute="leading" secondItem="49k-lK-EfJ" secondAttribute="leadingMargin" constant="10" id="Xvz-Id-i4p"/>
@@ -79,6 +80,7 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="k0s-gE-z87"/>
                                                     <exclude reference="3mf-LW-RMR"/>
                                                 </mask>
                                             </variation>

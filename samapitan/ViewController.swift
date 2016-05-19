@@ -78,11 +78,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 view.canShowCallout = true
                 if let hp = annotation as? HelpPost {
                     switch (hp.urgency) {
-                    case HelpPost.Urgency.Immediately:
+                    case HelpPost.Urgency.Urgent:
                         view.image = UIImage(named: "helpred")
-                    case HelpPost.Urgency.ASAP:
-                        view.image = UIImage(named: "helporange")
-                    case HelpPost.Urgency.Later:
+                    case HelpPost.Urgency.NotUrgent:
                         view.image = UIImage(named: "helpgreen")
                 }
                 view.leftCalloutAccessoryView = nil
@@ -91,11 +89,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 view.annotation = annotation
                 if let hp = annotation as? HelpPost {
                     switch (hp.urgency) {
-                    case HelpPost.Urgency.Immediately:
+                    case HelpPost.Urgency.Urgent:
                         view.image = UIImage(named: "helpred")
-                    case HelpPost.Urgency.ASAP:
-                        view.image = UIImage(named: "helporange")
-                    case HelpPost.Urgency.Later:
+                    case HelpPost.Urgency.NotUrgent:
                         view.image = UIImage(named: "helpgreen")
                     }
                 }

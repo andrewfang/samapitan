@@ -25,19 +25,17 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         self.title = "Create New Request"
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     @IBAction private func done() {
-        
         
         guard let titleCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Title.rawValue)) as? TextFieldTableViewCell,
             descCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Desc.rawValue)) as? TextViewTableViewCell,
             switchCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Urgency.rawValue)) as? SelectionSwitchTableViewCell
         else {
+            return
+        }
+        
+        if titleCell.textField.text?.characters.count < 1 {
+            titleCell.textField.placeholder = "Your request must have a title"
             return
         }
         

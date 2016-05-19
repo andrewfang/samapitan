@@ -110,9 +110,9 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
                 cell.urgencySwitch.selectedSegmentIndex = post.urgency.rawValue
                 switch (post.urgency) {
                 case .NotUrgent:
-                    cell.urgencySwitch.tintColor = UIColor.greenColor()
+                    cell.urgencySwitch.tintColor = UIColor.appGreen()
                 case .Urgent:
-                    cell.urgencySwitch.tintColor = UIColor.redColor()
+                    cell.urgencySwitch.tintColor = UIColor.appRed()
                 }
                 if (post.type == .MyPending) {
                     cell.urgencySwitch.userInteractionEnabled = true

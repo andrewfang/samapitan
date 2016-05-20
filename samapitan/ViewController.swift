@@ -40,8 +40,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
         self.navigationController?.navigationBar.translucent = false
         self.setupLocationManager()
-        self.people = Database.PeoplePinsToLoad
-        self.interestPoints = Database.InterestPoints
+        Database.loadPeopleData({
+            self.people = Database.PeoplePinsToLoad
+            self.addPeople()
+        })
+        
+        Database.loadRequestData({
+            self.posts = []
+            self.posts.appendContentsOf(Database.AllRequests)
+            self.posts.appendContentsOf(Database.PendingRequests)
+            self.posts.appendContentsOf(Database.RespondedToRequests)
+            self.addRequest()
+        })
+        
+        Database.loadInterestData({
+            self.interestPoints = Database.InterestPoints
+            self.addInterest()
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,18 +66,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
-        self.addAnnotations()
     }
     
-    private func addAnnotations() {
-        self.posts = []
-        self.posts.appendContentsOf(Database.AllRequests)
-        self.posts.appendContentsOf(Database.PendingRequests)
-        self.posts.appendContentsOf(Database.RespondedToRequests)
-        
-        self.mapView?.addAnnotations(self.posts)
+    private func addPeople() {
         self.mapView?.addAnnotations(self.people)
+    }
+    
+    private func addRequest() {
+        self.mapView?.addAnnotations(self.posts)
+    }
+    
+    private func addInterest() {
         self.mapView?.addAnnotations(self.interestPoints)
     }
     

@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Firebase
+import FirebaseDatabase
 
 class Database {
     
@@ -28,57 +30,100 @@ class Database {
         }
     }
     
-    static let PeoplePinsToLoad = [
-        PeoplePost(coord: CLLocationCoordinate2D(latitude: 37.34, longitude: -122.03),
-            name: "Akhila",
-            group: "Lifeguard Hellas",
-            imageURL:"https://scontent-lax3-1.xx.fbcdn.net/v/t1.0-9/12494723_10154002590118162_47203190040579392_n.jpg?oh=ca23ad457f9f0d16e46e4ae1a5e778e6&oe=57A343AA",
-            bio: "I am CPR certified."),
-        PeoplePost(coord: CLLocationCoordinate2D(latitude: 37.33, longitude: -122.04),
-            name: "Amber",
-            group: "Woman's Shelter",
-            imageURL:"https://scontent-sjc2-1.xx.fbcdn.net/t31.0-8/13131628_459973477526874_6316925508205068443_o.jpg",
-            bio: "Stanford Student")
-    ]
+    static func loadPeopleData(callback: (Void) -> Void) {
+        let firebase = FIRDatabase.database().reference()
+        firebase.child("people").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let people = snapshot.value as? [[String: AnyObject]] {
+                for person in people {
+                    let name = person["name"] as! String
+                    let bio = person["bio"] as! String
+                    let imageUrl = person["imageUrl"] as! String
+                    let group = person["group"] as! String
+                    let lat = person["lat"] as! Double
+                    let long = person["long"] as! Double
+                    PeoplePinsToLoad.append(PeoplePost(coord: CLLocationCoordinate2D(latitude: lat, longitude: long), name: name, group: group, imageURL: imageUrl, bio: bio))
+                }
+                callback()
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
-    static var InterestPoints = [
-        InterestPoint(coord: CLLocationCoordinate2D(latitude: 37.37, longitude: -122.05),
-            title: "Disaster Tech Lab Base",
-            description: "HQ for DTL until June 2016",
-            photoUrl: "http://disastertechlab.org/wp-content/uploads/2015/02/Disaster-Tech-Lab-Logo-web_smallest.png"
-        )
-    ]
+    static func loadInterestData(callback: (Void) -> Void) {
+        let firebase = FIRDatabase.database().reference()
+        firebase.child("interests").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let interests = snapshot.value as? [[String: AnyObject]] {
+                for interest in interests {
+                    let title = interest["title"] as! String
+                    let description = interest["description"] as! String
+                    let photoUrl = interest["photoUrl"] as! String
+                    let lat = interest["lat"] as! Double
+                    let long = interest["long"] as! Double
+                    InterestPoints.append(InterestPoint(coord: CLLocationCoordinate2D(latitude: lat, longitude: long), title: title, description: description, photoUrl: photoUrl))
+                }
+                    callback()
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
-    static var AllRequests = [
-        HelpPost(coord: CLLocationCoordinate2D(latitude: 37.33, longitude: -122.06),
-            title: "Burrito needed",
-            description: "We need help? He seems to need help urgently.",
-            urgency: HelpPost.Urgency.NotUrgent,
-            type: HelpPost.RequestType.Other,
-            timePosted: "13:37",
-            membersHelpingOut: [Database.PeoplePinsToLoad[1]])
-    ]
+    static func loadRequestData(callback: (Void) -> Void) {
+        let firebase = FIRDatabase.database().reference()
+        firebase.child("requests").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            if let requests = snapshot.value as? [[String: AnyObject]] {
+                for request in requests {
+                    let title = request["title"] as! String
+                    let description = request["description"] as! String
+                    let lat = request["lat"] as! Double
+                    let long = request["long"] as! Double
+                    let urg = request["urgency"] as! Int
+                    let time = request["time"] as! String
+                    let chats = request["chat"] as! [[String:String]]
+                    
+                    let urgency = urg == 0 ? HelpPost.Urgency.NotUrgent : HelpPost.Urgency.Urgent
+                    
+                    let members = request["members"] as! [[String: AnyObject]]
+                    var membersHelpingOut:[PeoplePost] = []
+                    for member in members {
+                        membersHelpingOut.append(PeoplePost(coord: CLLocationCoordinate2D(latitude: 0, longitude: 0), name: member["name"] as! String, group: member["group"] as! String, imageURL: member["imageUrl"] as! String, bio: ""))
+                    }
+                    
+                    self.AllRequests.append(HelpPost(coord: CLLocationCoordinate2D(latitude: lat, longitude: long), title: title, description: description, urgency: urgency, type: HelpPost.RequestType.Other, timePosted: time, membersHelpingOut: membersHelpingOut))
+                    
+                    Chats[title] = []
+                    var owner:Database.ChatOwner
+                    for chat in chats {
+                        switch chat["owner"]! {
+                        case "NotMe":
+                            owner = .NotMe
+                        case "Me":
+                            owner = .Me
+                        case "Joined":
+                            owner = .Joined
+                        default:
+                            owner = .NotMe
+                        }
+                        Chats[title]?.append(ChatMessage(textBody: chat["text"]!, owner: owner, ownerName: chat["ownerName"]!))
+                    }
+                }
+                callback()
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
     
-    static var PendingRequests:[HelpPost] = [
-        HelpPost(coord: CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04),
-            title: "Translator Needed - Farsi",
-            description: "We need help communicating with a refugee. He seems to need help urgently.",
-            urgency: HelpPost.Urgency.Urgent,
-            type: HelpPost.RequestType.MyPending,
-            timePosted: "10:37",
-            membersHelpingOut: [Database.PeoplePinsToLoad[0]])
-    ]
+    static var PeoplePinsToLoad:[PeoplePost] = []
     
-    static var RespondedToRequests:[HelpPost] = [
-        
-    ]
+    static var InterestPoints:[InterestPoint] = []
     
-    static var Chats:[String:[ChatMessage]] = [
-        "Translator Needed - Farsi": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: ""),
-                                    ChatMessage(textBody: "Timon joined the chat", owner: .Joined, ownerName: ""),
-                                      ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")],
-        "Burrito needed": [ChatMessage(textBody: "We need help communicating with a refugee. He seems to need help urgently", owner: .Me, ownerName: ""),
-            ChatMessage(textBody: "Timon joined the chat", owner: .Joined, ownerName: ""),
-            ChatMessage(textBody: "I'm on my way", owner: .NotMe, ownerName: "Timon")]
-    ]
+    static var AllRequests:[HelpPost] = []
+    
+    static var PendingRequests:[HelpPost] = []
+    
+    static var RespondedToRequests:[HelpPost] = []
+    
+    static var Chats:[String:[ChatMessage]] = [:]
 }

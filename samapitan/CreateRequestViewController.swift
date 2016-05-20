@@ -25,7 +25,7 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         self.title = "Create New Request"
     }
 
-    @IBAction private func done() {
+    func done() {
         
         guard let titleCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Title.rawValue)) as? TextFieldTableViewCell,
             descCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Desc.rawValue)) as? TextViewTableViewCell,
@@ -73,8 +73,6 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             membersHelpingOut: []))
         
         Database.Chats[title] = [Database.ChatMessage(textBody: desc, owner: .Me, ownerName: "")]
-        
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction private func cancel() {

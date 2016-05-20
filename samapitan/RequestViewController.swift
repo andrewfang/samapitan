@@ -32,14 +32,28 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.wantToHelpView.hidden = true
                 self.wantToHelpView.alpha = 1
         })
+        
+        self.helpPost.type = HelpPost.RequestType.MyResponded
+        let message = Database.ChatMessage(textBody: "You joined the chat", owner: .Joined, ownerName: "")
+        Database.Chats[self.helpPost.titleString]?.append(message)
+        self.chatMessage.append(message)
+        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
+        Database.respondToRequest(self.helpPost)
+//        if let requestsVc = self.navigationController?.viewControllers.first as? RequestsViewController {
+//            requestsVc
+//        }
     }
     
     @IBAction func sendMessage() {
         if (self.textView.text?.characters.count > 0) {
             
-            self.chatMessage.append(Database.ChatMessage(textBody: self.textView.text!, owner: .Me, ownerName: ""))
+            let message = Database.ChatMessage(textBody: self.textView.text!, owner: .Me, ownerName: "")
+            self.chatMessage.append(message)
+            Database.Chats[self.helpPost.titleString]?.append(message)
             self.textView.text = nil
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
+            
+            
         }
     }
 
@@ -53,7 +67,6 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100.0
         
-        self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .Done, target: self, action: #selector(showSettings))]
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)

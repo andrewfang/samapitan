@@ -32,6 +32,9 @@
 		496D76261CED49C200E80DBA /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D76251CED49C200E80DBA /* InterestViewController.swift */; };
 		496D76291CED49E000E80DBA /* Interest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 496D76281CED49E000E80DBA /* Interest.storyboard */; };
 		496D762B1CEE31DF00E80DBA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 496D762A1CEE31DF00E80DBA /* GoogleService-Info.plist */; };
+		496D762D1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D762C1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift */; };
+		496D762F1CEEE71D00E80DBA /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D762E1CEEE71D00E80DBA /* CreateViewController.swift */; };
+		496D76311CEF137A00E80DBA /* CreateInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D76301CEF137A00E80DBA /* CreateInterestViewController.swift */; };
 		49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5151CEB860300792503 /* ChatTableViewCell.swift */; };
 		49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */; };
 		49EAF51A1CEBD6A800792503 /* RequestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */; };
@@ -73,6 +76,9 @@
 		496D76251CED49C200E80DBA /* InterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
 		496D76281CED49E000E80DBA /* Interest.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Interest.storyboard; sourceTree = "<group>"; };
 		496D762A1CEE31DF00E80DBA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		496D762C1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelpingTableViewCell.swift; sourceTree = "<group>"; };
+		496D762E1CEEE71D00E80DBA /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
+		496D76301CEF137A00E80DBA /* CreateInterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInterestViewController.swift; sourceTree = "<group>"; };
 		49EAF5151CEB860300792503 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 		49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSettingsViewController.swift; sourceTree = "<group>"; };
@@ -178,10 +184,12 @@
 		4965895A1CE4451F006BC319 /* Add new Request */ = {
 			isa = PBXGroup;
 			children = (
-				496589511CE3B92E006BC319 /* CreateRequestViewController.swift */,
 				496589551CE44462006BC319 /* CreateRequest.storyboard */,
+				496589511CE3B92E006BC319 /* CreateRequestViewController.swift */,
+				496D76301CEF137A00E80DBA /* CreateInterestViewController.swift */,
 				49EAF5251CEC6E0C00792503 /* TextFieldTableViewCell.swift */,
 				49EAF5271CEC6EEB00792503 /* TextViewTableViewCell.swift */,
+				496D762E1CEEE71D00E80DBA /* CreateViewController.swift */,
 			);
 			name = "Add new Request";
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 				49EAF51B1CEBD7B600792503 /* SelectionSwitchTableViewCell.swift */,
 				49EAF51D1CEBE74900792503 /* LongTextTableViewCell.swift */,
 				49EAF51F1CEBEC1B00792503 /* ButtonTableViewCell.swift */,
+				496D762C1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift */,
 			);
 			name = Request;
 			sourceTree = "<group>";
@@ -389,7 +398,10 @@
 				49216A721CEA70AB0097C72F /* Database.swift in Sources */,
 				496589191CE2ED31006BC319 /* HelpPost.swift in Sources */,
 				49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */,
+				496D762D1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift in Sources */,
+				496D762F1CEEE71D00E80DBA /* CreateViewController.swift in Sources */,
 				49EAF51A1CEBD6A800792503 /* RequestSettingsViewController.swift in Sources */,
+				496D76311CEF137A00E80DBA /* CreateInterestViewController.swift in Sources */,
 				49EAF52A1CEC73EC00792503 /* BorderedTableViewCell.swift in Sources */,
 				49EAF5261CEC6E0C00792503 /* TextFieldTableViewCell.swift in Sources */,
 			);

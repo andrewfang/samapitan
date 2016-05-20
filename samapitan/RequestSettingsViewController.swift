@@ -28,7 +28,6 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
-        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
     let headerSections = ["TITLE", "DESCRIPTION", "URGENCY", "PEOPLE HELPING OUT", "Buttons"]
@@ -124,7 +123,19 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             return cell
         case Sections.People.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier("peopleHelpingCell", forIndexPath: indexPath)
-            cell.textLabel?.text = post.membersHelpingOut[indexPath.item].name
+            if let cell = cell as? PeopleHelpingTableViewCell {
+                cell.profileNameLabel.text = post.membersHelpingOut[indexPath.item].name
+                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
+                    if let url = NSURL(string: self.post.membersHelpingOut[indexPath.item].imageURL) {
+                        if let data = NSData(contentsOfURL: url) {
+                            NSOperationQueue.mainQueue().addOperationWithBlock({
+                                cell.profileImageView.image = UIImage(data: data)
+                            })
+                        }
+                    }
+                })
+            }
+            
             return cell
         case Sections.Buttons.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier("buttonCell", forIndexPath: indexPath)
@@ -161,6 +172,10 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
+    @IBAction private func resolveRequest() {
+        Database.resolveRequest(self.post)
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
 
 }

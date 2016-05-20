@@ -13,6 +13,7 @@ class InterestViewController: UIViewController, UITableViewDelegate, UITableView
     
     var interestPoint: InterestPoint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageView: UIImageView!
     
     enum Sections:Int {
         case Title = 0
@@ -23,11 +24,12 @@ class InterestViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = interestPoint.titleString
-        self.navigationController?.navigationBar.topItem?.title = ""
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
+        
+        self.imageView.image = self.interestPoint.photo
     }
     
     let headerSections = ["TITLE", "DESCRIPTION", "Buttons"]
@@ -102,5 +104,9 @@ class InterestViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    @IBAction func removeInterestPoint() {
+        Database.removeInterestPoint(self.interestPoint)
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
 }

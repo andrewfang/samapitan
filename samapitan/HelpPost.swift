@@ -61,4 +61,8 @@ class HelpPost: NSObject, MKAnnotation {
     @objc var subtitle: String? {
         return self.subtitleString
     }
+    
+    func setCoordinate(newCoordinate: CLLocationCoordinate2D) {
+        self.coord = newCoordinate
+    }
 }

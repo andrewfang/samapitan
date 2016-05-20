@@ -126,4 +126,44 @@ class Database {
     static var RespondedToRequests:[HelpPost] = []
     
     static var Chats:[String:[ChatMessage]] = [:]
+    
+    static func respondToRequest(request:HelpPost) {
+        var idxToRemove:Int?
+        for (i, theRequest) in Database.AllRequests.enumerate() {
+            if (theRequest.titleString == request.titleString) {
+                idxToRemove = i
+                break
+            }
+        }
+        if let idxCanBeRemoved = idxToRemove {
+            Database.AllRequests.removeAtIndex(idxCanBeRemoved)
+            Database.RespondedToRequests.append(request)
+        }
+    }
+    
+    static func resolveRequest(request:HelpPost) {
+        var idxToRemove:Int?
+        for (i, theRequest) in Database.PendingRequests.enumerate() {
+            if (theRequest.titleString == request.titleString) {
+                idxToRemove = i
+                break
+            }
+        }
+        if let idxCanBeRemoved = idxToRemove {
+            Database.PendingRequests.removeAtIndex(idxCanBeRemoved)
+        }
+    }
+    
+    static func removeInterestPoint(point: InterestPoint) {
+        var idxToRemove:Int?
+        for (i, thePoint) in Database.InterestPoints.enumerate() {
+            if (thePoint.titleString == point.titleString) {
+                idxToRemove = i
+                break
+            }
+        }
+        if let idxCanBeRemoved = idxToRemove {
+            Database.InterestPoints.removeAtIndex(idxCanBeRemoved)
+        }
+    }
 }

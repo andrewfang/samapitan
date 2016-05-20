@@ -66,6 +66,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        self.updateAnnotations()
     }
     
     private func addPeople() {
@@ -78,6 +80,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     private func addInterest() {
         self.mapView?.addAnnotations(self.interestPoints)
+    }
+    
+    private func updateAnnotations() {
+        if self.posts != nil {
+            self.mapView?.removeAnnotations(self.posts)
+            self.mapView?.removeAnnotations(self.interestPoints)
+            
+            self.posts = []
+            self.posts.appendContentsOf(Database.AllRequests)
+            self.posts.appendContentsOf(Database.PendingRequests)
+            self.posts.appendContentsOf(Database.RespondedToRequests)
+            self.mapView?.addAnnotations(self.posts)
+            
+            
+            self.interestPoints = Database.InterestPoints
+            self.mapView?.addAnnotations(self.interestPoints)
+        }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -93,6 +112,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
                 view.canShowCallout = true
                 if let hp = annotation as? HelpPost {
+                    if (hp.type == .MyPending) {
+                        view.draggable = true
+                    } else {
+                        view.draggable = false
+                    }
                     switch (hp.urgency) {
                     case HelpPost.Urgency.Urgent:
                         view.image = UIImage(named: "helpred")
@@ -104,6 +128,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             } else {
                 view.annotation = annotation
                 if let hp = annotation as? HelpPost {
+                    if (hp.type == .MyPending) {
+                        view.draggable = true
+                    } else {
+                        view.draggable = false
+                    }
                     switch (hp.urgency) {
                     case HelpPost.Urgency.Urgent:
                         view.image = UIImage(named: "helpred")
@@ -170,19 +199,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }
                 
             } else if let ipoint = view.annotation as? InterestPoint {
-                if let url = NSURL(string: ipoint.photoUrl) {
-                    dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), {
-                        if let data = NSData(contentsOfURL: url) {
-                            NSOperationQueue.mainQueue().addOperationWithBlock({
-                                thumbnailImageView.setImage(UIImage(data:data), forState: .Normal)
-                            })
-                        }
-                    })
-                }
+                thumbnailImageView.setImage(ipoint.photo, forState: .Normal)
             }
         }
     }
     
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch (newState) {
+        case .Starting:
+            view.dragState = .Dragging
+        case .Ending, .Canceling:
+            view.dragState = .None
+        default:
+            break
+        }
+    }
+
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.leftCalloutAccessoryView {
             performSegueWithIdentifier(Constants.ShowProfileSegue, sender: view)

@@ -23,8 +23,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
         
-        self.navigationController?.navigationBar.topItem?.title = ""
-        
         if let url = NSURL(string: self.person.imageURL) {
             dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
                 if let data = NSData(contentsOfURL: url) {

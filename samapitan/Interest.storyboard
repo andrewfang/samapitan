@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sE4-jr-utx">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="180" width="600" height="420"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="textCell" id="0CO-Jl-Hbc">
@@ -65,6 +65,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0H-1m-hLr">
                                                     <rect key="frame" x="277.5" y="7" width="45" height="30"/>
                                                     <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="removeInterestPoint" destination="ygO-gE-HoN" eventType="touchUpInside" id="hQ7-ye-0TF"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -78,16 +81,32 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dnu-up-zPH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dnu-up-zPH" firstAttribute="centerX" secondItem="qPV-7r-tUt" secondAttribute="centerX" id="6Wu-xa-DDb"/>
                             <constraint firstItem="sE4-jr-utx" firstAttribute="width" secondItem="qPV-7r-tUt" secondAttribute="width" id="LWR-uy-gif"/>
+                            <constraint firstItem="sE4-jr-utx" firstAttribute="height" secondItem="qPV-7r-tUt" secondAttribute="height" multiplier="0.7" id="eSC-9d-RDt"/>
+                            <constraint firstItem="sE4-jr-utx" firstAttribute="top" secondItem="dnu-up-zPH" secondAttribute="bottom" id="iig-OO-Uja"/>
                             <constraint firstItem="sE4-jr-utx" firstAttribute="centerY" secondItem="qPV-7r-tUt" secondAttribute="centerY" id="ilc-9r-W0b"/>
+                            <constraint firstItem="AqK-dC-tBY" firstAttribute="top" secondItem="sE4-jr-utx" secondAttribute="bottom" id="jii-yV-HE8"/>
+                            <constraint firstItem="dnu-up-zPH" firstAttribute="width" secondItem="qPV-7r-tUt" secondAttribute="width" id="nRx-mL-lo9"/>
                             <constraint firstItem="sE4-jr-utx" firstAttribute="height" secondItem="qPV-7r-tUt" secondAttribute="height" id="qWK-tL-1Rj"/>
+                            <constraint firstItem="dnu-up-zPH" firstAttribute="top" secondItem="eRR-eN-54K" secondAttribute="bottom" constant="-20" id="qvo-00-xHt"/>
                             <constraint firstItem="sE4-jr-utx" firstAttribute="centerX" secondItem="qPV-7r-tUt" secondAttribute="centerX" id="qxv-k7-SVa"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ilc-9r-W0b"/>
+                                <exclude reference="qWK-tL-1Rj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="dnu-up-zPH" id="Ass-c6-cGN"/>
                         <outlet property="tableView" destination="sE4-jr-utx" id="6LT-Xn-egC"/>
                     </connections>
                 </viewController>

@@ -14,15 +14,30 @@ class InterestPoint: NSObject, MKAnnotation {
     var titleString:String!
     var descriptionString: String!
     var coord:CLLocationCoordinate2D!
-    var photoUrl: String!
+    var photo: UIImage!
     
     init(coord:CLLocationCoordinate2D, title:String, description:String, photoUrl:String) {
         super.init()
         self.coord = coord
         self.titleString = title
         self.descriptionString = description
-        self.photoUrl = photoUrl
-        
+        if let url = NSURL(string: photoUrl) {
+            if let data = NSData(contentsOfURL: url) {
+                self.photo = UIImage(data: data)
+            } else {
+                photo = UIImage(named: "placeholder")
+            }
+        } else {
+            photo = UIImage(named: "placeholder")
+        }
+    }
+    
+    init(coord:CLLocationCoordinate2D, title:String, description:String, photo:UIImage) {
+        super.init()
+        self.coord = coord
+        self.titleString = title
+        self.descriptionString = description
+        self.photo = photo
     }
     
     init(coordinate:CLLocationCoordinate2D) {

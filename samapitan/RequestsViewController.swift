@@ -42,6 +42,14 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.pendingRequests = Database.PendingRequests
+        self.respondedToRequests = Database.RespondedToRequests
+        self.otherRequests = Database.AllRequests
+        self.tableView.reloadData()
+    }
+    
     // MARK: TableView
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3

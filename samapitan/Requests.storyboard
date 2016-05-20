@@ -104,6 +104,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="85o-cS-SWx">
+                        <barButtonItem key="backBarButtonItem" title=" " id="sDg-Zn-Ghw"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="P1x-2D-teD">
                             <connections>
                                 <action selector="done" destination="Asb-V2-Cev" id="iOw-SK-cJ5"/>

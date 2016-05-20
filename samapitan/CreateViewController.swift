@@ -53,11 +53,13 @@ class CreateViewController: UIPageViewController, UIPageViewControllerDataSource
     
     @IBAction private func done() {
         if let requestVC = self.viewControllers![0] as? CreateRequestViewController {
-            requestVC.done()
-            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            if requestVC.done() {
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }
         } else if let interestVC = self.viewControllers![0] as? CreateInterestViewController {
-            interestVC.done()
-            self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            if interestVC.done() {
+                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     

@@ -25,18 +25,18 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         self.title = "Create New Request"
     }
 
-    func done() {
+    func done() -> Bool {
         
         guard let titleCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Title.rawValue)) as? TextFieldTableViewCell,
             descCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Desc.rawValue)) as? TextViewTableViewCell,
             switchCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Urgency.rawValue)) as? SelectionSwitchTableViewCell
         else {
-            return
+            return false
         }
         
         if titleCell.textField.text?.characters.count < 1 {
             titleCell.textField.placeholder = "Your request must have a title"
-            return
+            return false
         }
         
         let title = titleCell.textField.text!
@@ -73,6 +73,7 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
             membersHelpingOut: []))
         
         Database.Chats[title] = [Database.ChatMessage(textBody: desc, owner: .Me, ownerName: "")]
+        return true
     }
     
     @IBAction private func cancel() {

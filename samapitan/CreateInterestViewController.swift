@@ -25,17 +25,17 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         self.title = "Create Interest Point"
     }
     
-    func done() {
+    func done() -> Bool {
         
         guard let titleCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Title.rawValue)) as? TextFieldTableViewCell,
             descCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Desc.rawValue)) as? TextViewTableViewCell
             else {
-                return
+                return false
         }
         
         if titleCell.textField.text?.characters.count < 1 {
             titleCell.textField.placeholder = "The interest point must have a title"
-            return
+            return false
         }
         
         let title = titleCell.textField.text!
@@ -49,6 +49,7 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         Database.InterestPoints.append(InterestPoint(coord: location, title: title, description: desc, photo: selectedImage ?? UIImage(named: "placeholder")!))
+        return true
     }
     
     @IBOutlet weak var tableView:UITableView!

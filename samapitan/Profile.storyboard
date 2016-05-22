@@ -77,11 +77,42 @@
                                             <outlet property="titleLabel" destination="tCk-lS-yUC" id="F5w-uL-QY9"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextCell" rowHeight="96" id="Ucz-NI-Wir">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LongTextCell" rowHeight="96" id="Ucz-NI-Wir" customClass="LongTextTableViewCell" customModule="samapitan" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="600" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ucz-NI-Wir" id="pQZ-6E-A5t">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iTQ-Nv-20q">
+                                                    <rect key="frame" x="18" y="0.0" width="564" height="96"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iTQ-Nv-20q" firstAttribute="centerY" secondItem="pQZ-6E-A5t" secondAttribute="centerY" id="ArZ-J3-tvv"/>
+                                                <constraint firstItem="iTQ-Nv-20q" firstAttribute="centerX" secondItem="pQZ-6E-A5t" secondAttribute="centerX" id="CC8-Ch-IDC"/>
+                                                <constraint firstItem="iTQ-Nv-20q" firstAttribute="height" secondItem="pQZ-6E-A5t" secondAttribute="height" id="Hu1-MN-IUa"/>
+                                                <constraint firstItem="iTQ-Nv-20q" firstAttribute="width" secondItem="pQZ-6E-A5t" secondAttribute="width" multiplier="0.9" id="WvI-pb-1QX"/>
+                                                <constraint firstItem="iTQ-Nv-20q" firstAttribute="leading" secondItem="pQZ-6E-A5t" secondAttribute="leadingMargin" constant="10" id="tOt-Y2-V9v"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="WvI-pb-1QX"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="longLabel" destination="iTQ-Nv-20q" id="DvP-Ym-npq"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextCell" id="gzr-8G-Tm0">
+                                        <rect key="frame" x="0.0" y="168" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzr-8G-Tm0" id="Pc7-Pz-RPD">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>

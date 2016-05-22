@@ -180,6 +180,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         dispatch_async(dispatch_get_main_queue()){
                             if let image = UIImage(data: data) {
                                 thumbnailImageView.setImage(image, forState: .Normal)
+                                thumbnailImageView.imageView?.contentMode = .ScaleAspectFill
                             }
                         }
                     }

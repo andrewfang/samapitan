@@ -53,7 +53,7 @@ class InterestViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == Sections.Desc.rawValue {
-            return 100
+            return 200
         } else {
             return UITableViewAutomaticDimension
         }

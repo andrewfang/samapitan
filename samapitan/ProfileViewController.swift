@@ -74,8 +74,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch (indexPath.section) {
         case Sections.About.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath)
-            cell.textLabel?.text = self.person.bio
+            let cell = tableView.dequeueReusableCellWithIdentifier("LongTextCell", forIndexPath: indexPath)
+            if let cell = cell as? LongTextTableViewCell {
+                cell.longLabel.text = self.person.bio
+            }
             return cell
         case Sections.Group.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath)
@@ -91,7 +93,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.titleLabel.text = "Facebook Message"
                     cell.contactButton.setImage(UIImage(named: "facebook"), forState: .Normal)
                 }
-                
             }
             
             return cell

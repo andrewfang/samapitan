@@ -67,6 +67,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        self.mapView.viewForAnnotation(mapView.userLocation)?.hidden = !NSUserDefaults.standardUserDefaults().boolForKey("available")
         self.updateAnnotations()
     }
     
@@ -83,6 +84,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     private func updateAnnotations() {
+        
         if self.posts != nil {
             self.mapView?.removeAnnotations(self.posts)
             self.mapView?.removeAnnotations(self.interestPoints)

@@ -14,7 +14,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
     var respondedToRequests:[HelpPost]!
     var otherRequests:[HelpPost]!
     
-    var headerSections = ["MY PENDING REQUESTS", "REQUESTS I'VE RESPONDED TO", "OTHER REQUESTS AROUND ME"]
+    var headerSections = ["MY HELP REQUESTS", "HELP REQUESTS RESPONDED TO", "OTHER HELP REQUESTS AROUND ME"]
     
     @IBOutlet weak var tableView:UITableView!
     
@@ -27,7 +27,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "View Requests"
+        self.title = "View Help Requests"
         
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
         self.navigationController?.navigationBar.translucent = false

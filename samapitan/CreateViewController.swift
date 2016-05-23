@@ -17,7 +17,7 @@ class CreateViewController: UIPageViewController, UIPageViewControllerDataSource
 
         self.delegate = self
         self.dataSource = self
-        self.title = "Create Request"
+        self.title = "Create Help Request"
         
         let createRequest: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("createRequestBoard")
         let createInterest: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("createInterestBoard")

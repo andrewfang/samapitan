@@ -6,9 +6,11 @@ import json
 database = "https://samapitan.firebaseio.com/"
 
 # Apple HQ
-gps_location = (37.333554, -122.033737)
+#gps_location = (37.333554, -122.033737)
 # Stanford d.school
-# gps_location = (37.426448, -122.172047)
+gps_location = (37.426448, -122.172047)
+# Stanford hospital
+gps_location = (37.4343644,-122.1732834)
 
 interests_dict = [
     {

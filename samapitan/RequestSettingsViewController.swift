@@ -109,7 +109,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
                 cell.urgencySwitch.selectedSegmentIndex = post.urgency.rawValue
                 switch (post.urgency) {
                 case .NotUrgent:
-                    cell.urgencySwitch.tintColor = UIColor.appGreen()
+                    cell.urgencySwitch.tintColor = UIColor.appBlue()
                 case .Urgent:
                     cell.urgencySwitch.tintColor = UIColor.appRed()
                 }
@@ -166,7 +166,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
     
     func switchTapped(control:UISegmentedControl) {
         if (control.selectedSegmentIndex == 0) {
-            control.tintColor = UIColor.appGreen()
+            control.tintColor = UIColor.appBlue()
         } else if (control.selectedSegmentIndex == 1) {
             control.tintColor = UIColor.appRed()
         }

@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class CreateInterestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CreateInterestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +22,7 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         self.tableView.delegate = self
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
         
-        self.title = "Create Interest Point"
+        self.title = "Create Point of Interest"
     }
     
     func done() -> Bool {
@@ -34,7 +34,7 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         }
         
         if titleCell.textField.text?.characters.count < 1 {
-            titleCell.textField.placeholder = "The interest point must have a title"
+            titleCell.textField.placeholder = "The point of interest must have a title"
             return false
         }
         
@@ -42,7 +42,7 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         let desc = descCell.textView.text
         
         var location = CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04)
-        let lat = NSUserDefaults.standardUserDefaults().doubleForKey("lat")
+        let lat = NSUserDefaults.standardUserDefaults().doubleForKey("lat") + 0.00002
         let long = NSUserDefaults.standardUserDefaults().doubleForKey("long")
         if lat != long {
             location = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -97,9 +97,17 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
         
         switch (indexPath.section) {
         case Sections.Title.rawValue:
-            return tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath)
+            if let tfCell = cell as? TextFieldTableViewCell {
+                tfCell.textField.addTarget(tfCell.textField, action: #selector(resignFirstResponder), forControlEvents: .EditingDidEndOnExit)
+            }
+            return cell
         case Sections.Desc.rawValue:
-            return tableView.dequeueReusableCellWithIdentifier("textViewCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("textViewCell", forIndexPath: indexPath)
+            if let tvCell = cell as? TextViewTableViewCell {
+                tvCell.textView.delegate = self
+            }
+            return cell
         case Sections.Photo.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier("buttonCell", forIndexPath: indexPath)
             if let cell = cell as? ButtonTableViewCell {
@@ -162,5 +170,13 @@ class CreateInterestViewController: UIViewController, UITableViewDelegate, UITab
     // Called on cancel
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: UITextView Delegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
     }
 }

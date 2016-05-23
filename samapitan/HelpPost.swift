@@ -41,7 +41,7 @@ class HelpPost: NSObject, MKAnnotation {
         self.descriptionString = description
         switch (urgency) {
         case .NotUrgent:
-            self.color = UIColor.appGreen()
+            self.color = UIColor.appBlue()
         case .Urgent:
             self.color = UIColor.appRed()
         }

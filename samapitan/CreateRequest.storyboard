@@ -188,8 +188,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MY4-jy-mvX">
-                                                    <rect key="frame" x="260" y="5" width="80" height="34"/>
-                                                    <state key="normal" title="Set Photo">
+                                                    <rect key="frame" x="268" y="-10" width="64" height="64"/>
+                                                    <state key="normal" image="addPhoto">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     </state>
                                                 </button>
@@ -272,4 +272,7 @@
             <point key="canvasLocation" x="2414" y="1563"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="addPhoto" width="64" height="64"/>
+    </resources>
 </document>

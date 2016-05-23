@@ -96,7 +96,6 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.textInputView.hidden = true
         self.wantToHelpView.hidden = false
         self.wantToHelpButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        self.wantToHelpButton.layer.cornerRadius = 5.0
         self.wantToHelpButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
         self.wantToHelpButton.backgroundColor = UIColor.appBlue()
     }

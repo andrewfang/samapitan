@@ -124,7 +124,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         view.image = UIImage(named: "helpgreen")
                 }
                 view.leftCalloutAccessoryView = nil
-                view.rightCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             } else {
                 view.annotation = annotation
                 if let hp = annotation as? HelpPost {
@@ -160,12 +160,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.InterestPin)
                 view.canShowCallout = true
                 view.image = UIImage(named: "interestPoint")
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
                 view.calloutOffset = CGPointMake(0, 0)
-                view.rightCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
                 view.leftCalloutAccessoryView = nil
             } else {
                 view.annotation = annotation
-                view.image = UIImage(named: "interestPoint")
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             }
         }
         return view
@@ -188,19 +188,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
         
-        if let thumbnailImageView = view.rightCalloutAccessoryView as? UIButton {
-            if let hp = view.annotation as? HelpPost {
-                switch (hp.urgency) {
-                case .Urgent:
-                    thumbnailImageView.setImage(UIImage(named: "blockRed"), forState: .Normal)
-                case .NotUrgent:
-                    thumbnailImageView.setImage(UIImage(named: "blockGreen"), forState: .Normal)
-                default:
-                    break
-                }
-                
-            } else if let ipoint = view.annotation as? InterestPoint {
-                thumbnailImageView.setImage(ipoint.photo, forState: .Normal)
+        if let thumbnailButton = view.rightCalloutAccessoryView as? UIButton {
+            thumbnailButton.tintColor = UIColor.appBlue()
+            if let hp = view as? HelpPost where hp.urgency == .Urgent {
+                thumbnailButton.tintColor = UIColor.appRed()
             }
         }
     }

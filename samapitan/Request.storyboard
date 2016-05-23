@@ -52,7 +52,7 @@
                                 <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-WE-Zig">
-                                        <rect key="frame" x="254" y="15" width="92" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                                         <state key="normal" title="I want to help">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -66,6 +66,8 @@
                                     <constraint firstItem="Gzj-WE-Zig" firstAttribute="centerX" secondItem="6Hj-Yd-cht" secondAttribute="centerX" id="Hrx-ao-TH4"/>
                                     <constraint firstAttribute="height" constant="60" id="OVD-PO-eAs"/>
                                     <constraint firstItem="Gzj-WE-Zig" firstAttribute="centerY" secondItem="6Hj-Yd-cht" secondAttribute="centerY" id="asU-1R-5j1"/>
+                                    <constraint firstItem="Gzj-WE-Zig" firstAttribute="height" secondItem="6Hj-Yd-cht" secondAttribute="height" id="kGI-eJ-czp"/>
+                                    <constraint firstItem="Gzj-WE-Zig" firstAttribute="width" secondItem="6Hj-Yd-cht" secondAttribute="width" id="vFO-bY-qKU"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="weg-ca-cRv">

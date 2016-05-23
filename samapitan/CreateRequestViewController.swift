@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class CreateRequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateRequestViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +52,7 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         var location = CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04)
-        let lat = NSUserDefaults.standardUserDefaults().doubleForKey("lat")
+        let lat = NSUserDefaults.standardUserDefaults().doubleForKey("lat") + 0.00002
         let long = NSUserDefaults.standardUserDefaults().doubleForKey("long")
         if lat != long {
             location = CLLocationCoordinate2D(latitude: lat, longitude: long)
@@ -139,14 +139,22 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         
         switch (indexPath.section) {
         case Sections.Title.rawValue:
-            return tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath)
+            if let tfCell = cell as? TextFieldTableViewCell {
+                tfCell.textField.addTarget(tfCell.textField, action: #selector(resignFirstResponder), forControlEvents: .EditingDidEndOnExit)
+            }
+            return cell
         case Sections.Desc.rawValue:
-            return tableView.dequeueReusableCellWithIdentifier("textViewCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("textViewCell", forIndexPath: indexPath)
+            if let tvCell = cell as? TextViewTableViewCell {
+                tvCell.textView.delegate = self
+            }
+            return cell
         case Sections.Urgency.rawValue:
             let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = 0
-                cell.urgencySwitch.tintColor = UIColor.appGreen()
+                cell.urgencySwitch.tintColor = UIColor.appBlue()
                 cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), forControlEvents: .ValueChanged)
             }
             return cell
@@ -157,10 +165,18 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
 
     func switchTapped(control:UISegmentedControl) {
         if (control.selectedSegmentIndex == 0) {
-            control.tintColor = UIColor.appGreen()
+            control.tintColor = UIColor.appBlue()
         } else if (control.selectedSegmentIndex == 1) {
             control.tintColor = UIColor.appRed()
         }
+    }
+    
+    // MARK: UITextView Delegate
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            textView.resignFirstResponder()
+        }
+        return true
     }
 
 }

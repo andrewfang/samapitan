@@ -102,6 +102,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        self.mapView.viewForAnnotation(mapView.userLocation)?.hidden = !NSUserDefaults.standardUserDefaults().boolForKey("available")
         if let _ = annotation as? MKUserLocation {
             return nil
         }

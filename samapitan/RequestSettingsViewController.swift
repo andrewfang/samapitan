@@ -55,7 +55,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             
             let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
             label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
-            label.text = "Choosing immediately will alert nearby volunteers"
+            label.text = "Choosing urgent will alert nearby volunteers"
             view.addSubview(label)
             return view
         } else {

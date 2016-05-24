@@ -72,6 +72,7 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
         
         switch (helpPost.type) {
         case HelpPost.RequestType.MyPending:
@@ -97,7 +98,13 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.wantToHelpView.hidden = false
         self.wantToHelpButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         self.wantToHelpButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
-        self.wantToHelpButton.backgroundColor = UIColor.appBlue()
+        
+        switch (self.helpPost.urgency) {
+        case .Urgent:
+            self.wantToHelpButton.backgroundColor = UIColor.appRed()
+        case .NotUrgent:
+            self.wantToHelpButton.backgroundColor = UIColor.appBlue() 
+        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -139,8 +146,6 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.textLayoutGuide.constant = keyboardSize.height
             })
         }
-        
-        
     }
     
     func keyboardWillChange(notification:NSNotification) {
@@ -153,6 +158,11 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
             })
         }
+    }
+    
+    func keyboardDidShow(notification: NSNotification) {
+        let indexPath = NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)
+        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
     }
     
     func keyboardWillHide(notification: NSNotification) {

@@ -52,7 +52,8 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
             Database.Chats[self.helpPost.titleString]?.append(message)
             self.textView.text = nil
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
-            
+            let indexPath = NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)
+            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: false)
             
         }
     }

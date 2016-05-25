@@ -278,6 +278,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(locationObj.coordinate)
             NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.latitude, forKey: "lat")
             NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.longitude, forKey: "long")
+             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "available")
             if (firstLoad) {
                 firstLoad = false
                 self.mapView.setCenterCoordinate(locationObj.coordinate, animated: true)

@@ -35,6 +35,9 @@
 		496D762D1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D762C1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift */; };
 		496D762F1CEEE71D00E80DBA /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D762E1CEEE71D00E80DBA /* CreateViewController.swift */; };
 		496D76311CEF137A00E80DBA /* CreateInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D76301CEF137A00E80DBA /* CreateInterestViewController.swift */; };
+		499EDBB81CF56AB500C10F69 /* OnboardingStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499EDBB71CF56AB500C10F69 /* OnboardingStoryboard.storyboard */; };
+		499EDBBB1CF5709C00C10F69 /* OnboardingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499EDBBA1CF5709C00C10F69 /* OnboardingPageViewController.swift */; };
+		499EDBBD1CF5963A00C10F69 /* OnboardingDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499EDBBC1CF5963A00C10F69 /* OnboardingDoneViewController.swift */; };
 		49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5151CEB860300792503 /* ChatTableViewCell.swift */; };
 		49EAF5181CEB87F500792503 /* UIPaddedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */; };
 		49EAF51A1CEBD6A800792503 /* RequestSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */; };
@@ -79,6 +82,9 @@
 		496D762C1CEEAEE400E80DBA /* PeopleHelpingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelpingTableViewCell.swift; sourceTree = "<group>"; };
 		496D762E1CEEE71D00E80DBA /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
 		496D76301CEF137A00E80DBA /* CreateInterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInterestViewController.swift; sourceTree = "<group>"; };
+		499EDBB71CF56AB500C10F69 /* OnboardingStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OnboardingStoryboard.storyboard; sourceTree = "<group>"; };
+		499EDBBA1CF5709C00C10F69 /* OnboardingPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPageViewController.swift; sourceTree = "<group>"; };
+		499EDBBC1CF5963A00C10F69 /* OnboardingDoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDoneViewController.swift; sourceTree = "<group>"; };
 		49EAF5151CEB860300792503 /* ChatTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		49EAF5171CEB87F500792503 /* UIPaddedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddedLabel.swift; sourceTree = "<group>"; };
 		49EAF5191CEBD6A800792503 /* RequestSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSettingsViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 				49216A711CEA70AB0097C72F /* Database.swift */,
 				49EAF5291CEC73EC00792503 /* BorderedTableViewCell.swift */,
 				496D762A1CEE31DF00E80DBA /* GoogleService-Info.plist */,
+				499EDBB91CF56ABE00C10F69 /* Onboarding */,
 			);
 			path = samapitan;
 			sourceTree = "<group>";
@@ -239,6 +246,16 @@
 			name = Interest;
 			sourceTree = "<group>";
 		};
+		499EDBB91CF56ABE00C10F69 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				499EDBB71CF56AB500C10F69 /* OnboardingStoryboard.storyboard */,
+				499EDBBA1CF5709C00C10F69 /* OnboardingPageViewController.swift */,
+				499EDBBC1CF5963A00C10F69 /* OnboardingDoneViewController.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		C0235560B8EFE8BF3DF714B9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +332,7 @@
 				4965896F1CE48F6E006BC319 /* Request.storyboard in Resources */,
 				4965890D1CE28DA4006BC319 /* Assets.xcassets in Resources */,
 				496D76291CED49E000E80DBA /* Interest.storyboard in Resources */,
+				499EDBB81CF56AB500C10F69 /* OnboardingStoryboard.storyboard in Resources */,
 				496589541CE443EC006BC319 /* Requests.storyboard in Resources */,
 				496589561CE44462006BC319 /* CreateRequest.storyboard in Resources */,
 				496D762B1CEE31DF00E80DBA /* GoogleService-Info.plist in Resources */,
@@ -390,9 +408,11 @@
 				496589521CE3B92E006BC319 /* CreateRequestViewController.swift in Sources */,
 				4965891D1CE30ABD006BC319 /* PeoplePost.swift in Sources */,
 				496589081CE28DA4006BC319 /* ViewController.swift in Sources */,
+				499EDBBB1CF5709C00C10F69 /* OnboardingPageViewController.swift in Sources */,
 				496D76261CED49C200E80DBA /* InterestViewController.swift in Sources */,
 				496589611CE46CCA006BC319 /* SwitchTableViewCell.swift in Sources */,
 				49EAF5201CEBEC1B00792503 /* ButtonTableViewCell.swift in Sources */,
+				499EDBBD1CF5963A00C10F69 /* OnboardingDoneViewController.swift in Sources */,
 				496589061CE28DA4006BC319 /* AppDelegate.swift in Sources */,
 				4965891B1CE30615006BC319 /* SettingsViewController.swift in Sources */,
 				49EAF5161CEB860300792503 /* ChatTableViewCell.swift in Sources */,

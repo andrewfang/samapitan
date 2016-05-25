@@ -39,7 +39,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.title = "Samapitan"
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
         self.navigationController?.navigationBar.translucent = false
-        self.setupLocationManager()
         Database.loadPeopleData({
             self.people = Database.PeoplePinsToLoad
             self.addPeople()
@@ -57,6 +56,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.interestPoints = Database.InterestPoints
             self.addInterest()
         })
+        
+        if (!NSUserDefaults.standardUserDefaults().boolForKey("onboarded")) {
+            self.performSegueWithIdentifier("showOnboarding", sender: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -66,6 +69,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("onboarded") {
+            self.setupLocationManager()
+        }
         
         self.mapView.viewForAnnotation(mapView.userLocation)?.hidden = !NSUserDefaults.standardUserDefaults().boolForKey("available")
         self.updateAnnotations()

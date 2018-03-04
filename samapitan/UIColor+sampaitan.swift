@@ -12,7 +12,6 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
     static func appRed() -> UIColor { return UIColor.rgb(192, 57, 43) }
     static func appOrange() -> UIColor { return UIColor.rgb(255, 104, 17) }
     static func appYellow() -> UIColor { return UIColor.rgb(251, 178, 38) }
@@ -25,7 +24,7 @@ extension UIColor {
     static func appTabBarColor() -> UIColor { return UIColor.rgb(25, 25, 25) }
     
     // Given a r,g,b, transforms it into a UIColor element
-    static func rgb(red:CGFloat, _ green: CGFloat, _ blue: CGFloat) -> UIColor{
+    static func rgb(_ red:CGFloat, _ green: CGFloat, _ blue: CGFloat) -> UIColor{
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1.0)
     }
 }

@@ -30,8 +30,8 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         self.title = "View Help Requests"
         
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white
 
         self.pendingRequests = Database.PendingRequests
         self.respondedToRequests = Database.RespondedToRequests
@@ -42,7 +42,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.backgroundColor = UIColor.appBackgroundColor()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.pendingRequests = Database.PendingRequests
         self.respondedToRequests = Database.RespondedToRequests
@@ -55,7 +55,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         return 3
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case RequestSections.Pending.rawValue:
             return self.pendingRequests.count
@@ -68,9 +68,9 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("request cell", forIndexPath: indexPath) as? BorderedTableViewCell else {
-            return tableView.dequeueReusableCellWithIdentifier("request cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "request cell", for: indexPath) as? BorderedTableViewCell else {
+            return tableView.dequeueReusableCell(withIdentifier: "request cell", for: indexPath)
         }
         
         switch (indexPath.section) {
@@ -93,12 +93,12 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
         
-        let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-        label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.thin)
         label.text = self.headerSections[section]
         view.addSubview(label)
         view.backgroundColor = UIColor.appBackgroundColor()
@@ -106,18 +106,18 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
         return view
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("REQUEST_SEGUE", sender: indexPath)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "REQUEST_SEGUE", sender: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = sender as? NSIndexPath else {
             return
         }
         
         if segue.identifier == "REQUEST_SEGUE" {
-            if let requestvc = segue.destinationViewController as? RequestViewController {
+            if let requestvc = segue.destination as? RequestViewController {
                 switch (indexPath.section) {
                 case RequestSections.Pending.rawValue:
                     requestvc.helpPost = self.pendingRequests[indexPath.item]
@@ -133,7 +133,7 @@ class RequestsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @IBAction private func done() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
 }

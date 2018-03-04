@@ -19,21 +19,21 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         self.delegate = self
         self.dataSource = self
         
-        let interestCard: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("interestCard")
-        let requestCard: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("requestCard")
-        let peopleCard: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("peopleCard")
-        let doneCard: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("doneCard")
+        let interestCard: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "interestCard")
+        let requestCard: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "requestCard")
+        let peopleCard: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "peopleCard")
+        let doneCard: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "doneCard")
         
         pages.append(interestCard)
         pages.append(requestCard)
         pages.append(peopleCard)
         pages.append(doneCard)
         
-        setViewControllers([interestCard], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([interestCard], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         if currentIndex == 0 {
             return nil
         } else {
@@ -41,8 +41,8 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         if currentIndex == pages.count - 1 {
             return nil
         } else {
@@ -50,15 +50,15 @@ class OnboardingPageViewController: UIPageViewController, UIPageViewControllerDa
         }
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         self.pagesVisited += 1
     }
     

@@ -16,14 +16,14 @@ class UIPaddedLabel: UILabel {
     // An empty implementation adversely affects performance during animation.
     var edgeInsets: UIEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     
-    override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
-        var rect = edgeInsets.apply(bounds)
-        rect = super.textRectForBounds(rect, limitedToNumberOfLines: numberOfLines)
-        return edgeInsets.inverse.apply(rect)
+    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+        var rect = edgeInsets.apply(rect: bounds)
+        rect = super.textRect(forBounds: rect, limitedToNumberOfLines: numberOfLines)
+        return edgeInsets.inverse.apply(rect: rect)
     }
     
-    override func drawTextInRect(rect: CGRect) {
-        super.drawTextInRect(edgeInsets.apply(rect))
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: edgeInsets.apply(rect: rect))
     }
 }
 

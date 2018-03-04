@@ -17,8 +17,8 @@ class OnboardingDoneViewController: UIViewController {
     }
 
     @IBAction private func done() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "onboarded")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        UserDefaults.standard.set(true, forKey: "onboarded")
     }
 
 }

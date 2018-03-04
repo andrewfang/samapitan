@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zdv-L2-L1b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" generatesPrototypingConstraints="YES" useTraitCollections="YES" colorMatched="NO" initialViewController="zdv-L2-L1b">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <development version="7000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -24,33 +25,33 @@
                         <viewControllerLayoutGuide type="bottom" id="sjq-7x-nL6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vAv-Oy-fZ7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardInterest" translatesAutoresizingMaskIntoConstraints="NO" id="pYQ-pv-CTr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="interestPoint" translatesAutoresizingMaskIntoConstraints="NO" id="KVd-ZG-HmF">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <rect key="frame" x="138" y="284" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="KVd-ZG-HmF" secondAttribute="height" multiplier="1:1" id="RIr-tq-Zeh"/>
                                     <constraint firstAttribute="height" constant="100" id="TY8-kd-n4i"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points of Interest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISr-HP-LQi">
-                                <rect key="frame" x="190.5" y="185" width="219" height="39"/>
+                                <rect key="frame" x="78" y="219" width="219" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover and share points of interest" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-n2-prD">
-                                <rect key="frame" x="150" y="376" width="300" height="21"/>
+                                <rect key="frame" x="94" y="410" width="187" height="41"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="lyt-n2-prD" firstAttribute="centerX" secondItem="vAv-Oy-fZ7" secondAttribute="centerX" id="3Tv-wG-m6N"/>
                             <constraint firstItem="pYQ-pv-CTr" firstAttribute="width" secondItem="vAv-Oy-fZ7" secondAttribute="width" id="4pG-Nc-ewe"/>
@@ -85,33 +86,33 @@
                         <viewControllerLayoutGuide type="bottom" id="pRU-mp-l4r"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zf5-5H-MAl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardRequest" translatesAutoresizingMaskIntoConstraints="NO" id="RA4-2D-tax">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="helpgreen" translatesAutoresizingMaskIntoConstraints="NO" id="c73-Hu-Nmn">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <rect key="frame" x="138" y="284" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="FUx-j1-W12"/>
                                     <constraint firstAttribute="width" secondItem="c73-Hu-Nmn" secondAttribute="height" multiplier="1:1" id="rP5-hW-sZw"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request For Help" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wK-Xr-lqx">
-                                <rect key="frame" x="185.5" y="185" width="229.5" height="39"/>
+                                <rect key="frame" x="73" y="219" width="230" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Respond to other requests for help, or drop a pin to receive help" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxA-HF-Cwp">
-                                <rect key="frame" x="150" y="376" width="300" height="21"/>
+                                <rect key="frame" x="94" y="410" width="187" height="82"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="c73-Hu-Nmn" firstAttribute="top" secondItem="9wK-Xr-lqx" secondAttribute="bottom" constant="26" id="1rH-jZ-gaf"/>
                             <constraint firstItem="c73-Hu-Nmn" firstAttribute="centerX" secondItem="zf5-5H-MAl" secondAttribute="centerX" id="2xS-WO-JUh"/>
@@ -146,33 +147,33 @@
                         <viewControllerLayoutGuide type="bottom" id="Eqd-Eo-7Wd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="T8e-YT-1bg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardPeople" translatesAutoresizingMaskIntoConstraints="NO" id="d8n-xH-LYr">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="personpin" translatesAutoresizingMaskIntoConstraints="NO" id="jIG-1S-VfZ">
-                                <rect key="frame" x="250" y="250" width="100" height="100"/>
+                                <rect key="frame" x="138" y="284" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Xbc-qb-vBS"/>
                                     <constraint firstAttribute="width" secondItem="jIG-1S-VfZ" secondAttribute="height" multiplier="1:1" id="a7F-QU-aw5"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Volunteers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0l-OD-zo9">
-                                <rect key="frame" x="172" y="185" width="256" height="39"/>
+                                <rect key="frame" x="60" y="219" width="256" height="39"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See others around you and contact them directly" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzz-rE-r6T">
-                                <rect key="frame" x="150" y="376" width="300" height="21"/>
+                                <rect key="frame" x="94" y="410" width="187" height="61"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="d8n-xH-LYr" firstAttribute="width" secondItem="T8e-YT-1bg" secondAttribute="width" id="9AK-8z-FqG"/>
                             <constraint firstItem="d8n-xH-LYr" firstAttribute="height" secondItem="T8e-YT-1bg" secondAttribute="height" id="SX8-GK-wzu"/>
@@ -207,24 +208,24 @@
                         <viewControllerLayoutGuide type="bottom" id="zdV-nt-ZJB"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="rqo-u9-clq">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardDone" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-zm-KpY">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gE-yI-7SL">
-                                <rect key="frame" x="224" y="274.5" width="152" height="51"/>
+                                <rect key="frame" x="112" y="308" width="152" height="51"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="32"/>
                                 <state key="normal" title="Get Started">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="done" destination="VXU-jj-Cbj" eventType="touchUpInside" id="vQd-8Q-qNO"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="c1A-zm-KpY" firstAttribute="height" secondItem="rqo-u9-clq" secondAttribute="height" id="4BD-fu-Ohh"/>
                             <constraint firstItem="8gE-yI-7SL" firstAttribute="centerY" secondItem="c1A-zm-KpY" secondAttribute="centerY" id="7BB-3L-z2x"/>

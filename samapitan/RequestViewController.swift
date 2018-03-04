@@ -23,13 +23,13 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func joinChat() {
         
-        UIView.animateWithDuration(0.4, animations: {
+        UIView.animate(withDuration: 0.4, animations: {
             self.textInputView.alpha = 1
             self.wantToHelpView.alpha = 0
             }, completion: { done in
-                self.textInputView.hidden = false
+                self.textInputView.isHidden = false
                 self.textInputView.alpha = 1
-                self.wantToHelpView.hidden = true
+                self.wantToHelpView.isHidden = true
                 self.wantToHelpView.alpha = 1
         })
         
@@ -37,24 +37,22 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         let message = Database.ChatMessage(textBody: "You joined the chat", owner: .Joined, ownerName: "")
         Database.Chats[self.helpPost.titleString]?.append(message)
         self.chatMessage.append(message)
-        self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
-        Database.respondToRequest(self.helpPost)
+        self.tableView.insertRows(at: [IndexPath(row: self.chatMessage.count - 1, section: 0)], with: .top)
+        Database.respondToRequest(request: self.helpPost)
 //        if let requestsVc = self.navigationController?.viewControllers.first as? RequestsViewController {
 //            requestsVc
 //        }
     }
     
     @IBAction func sendMessage() {
-        if (self.textView.text?.characters.count > 0) {
-            
+        if let textCount = self.textView.text?.count, textCount > 0 {
             let message = Database.ChatMessage(textBody: self.textView.text!, owner: .Me, ownerName: "")
             self.chatMessage.append(message)
             Database.Chats[self.helpPost.titleString]?.append(message)
             self.textView.text = nil
-            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)], withRowAnimation: .Top)
-            let indexPath = NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)
-            self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: false)
-            
+            self.tableView.insertRows(at: [IndexPath.init(row: self.chatMessage.count - 1, section: 0)], with: .top)
+            let indexPath = IndexPath(row: self.chatMessage.count - 1, section: 0)
+            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         }
     }
 
@@ -68,12 +66,12 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100.0
         
-        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .Done, target: self, action: #selector(showSettings))]
+        self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(named: "settings"), style: .done, target: self, action: #selector(showSettings))]
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardWillChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RequestViewController.keyboardDidShow(_:)), name: UIKeyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RequestViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RequestViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RequestViewController.keyboardWillChange(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(RequestViewController.keyboardDidShow(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
         switch (helpPost.type) {
         case HelpPost.RequestType.MyPending:
@@ -89,15 +87,15 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func setupChat() {
-        self.wantToHelpView.hidden = true
-        self.textInputView.hidden = false
+        self.wantToHelpView.isHidden = true
+        self.textInputView.isHidden = false
         
     }
     
     private func setupJoinView() {
-        self.textInputView.hidden = true
-        self.wantToHelpView.hidden = false
-        self.wantToHelpButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        self.textInputView.isHidden = true
+        self.wantToHelpView.isHidden = false
+        self.wantToHelpButton.setTitleColor(UIColor.white, for: .normal)
         self.wantToHelpButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
         
         switch (self.helpPost.urgency) {
@@ -108,15 +106,15 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatMessage.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cellToDeque = ""
         if chatMessage[indexPath.item].owner == Database.ChatOwner.Me {
             cellToDeque = "meCell"
@@ -126,7 +124,7 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
             cellToDeque = "notMeCell"
         }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellToDeque, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellToDeque, for: indexPath)
         if let cell = cell as? ChatTableViewCell {
             cell.content.text = chatMessage[indexPath.item].textBody
             if chatMessage[indexPath.item].owner == Database.ChatOwner.NotMe {
@@ -139,19 +137,19 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    @objc func keyboardWillShow(_ notification: NSNotification) {
         self.keyboardVisible = true
         
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
-            UIView.animateWithDuration(0.3, animations: {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.textLayoutGuide.constant = keyboardSize.height
             })
         }
     }
     
-    func keyboardWillChange(notification:NSNotification) {
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
-            UIView.animateWithDuration(0.3, animations: {
+    @objc func keyboardWillChange(_ notification:NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size{
+            UIView.animate(withDuration: 0.3, animations: {
                 if (self.keyboardVisible) {
                     self.textLayoutGuide.constant = keyboardSize.height
                 } else {
@@ -161,25 +159,25 @@ class RequestViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func keyboardDidShow(notification: NSNotification) {
-        let indexPath = NSIndexPath(forRow: self.chatMessage.count - 1, inSection: 0)
-        self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+    @objc func keyboardDidShow(_ notification: NSNotification) {
+        let indexPath = IndexPath(row: self.chatMessage.count - 1, section: 0)
+        self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    @objc func keyboardWillHide(_ notification: NSNotification) {
         self.keyboardVisible = false
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
                 self.textLayoutGuide.constant = 0
         })
     }
     
-    func showSettings() {
-        self.performSegueWithIdentifier("showSettingsSegue", sender: nil)
+    @objc func showSettings() {
+        self.performSegue(withIdentifier: "showSettingsSegue", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showSettingsSegue" {
-            if let settingsvc = segue.destinationViewController as? RequestSettingsViewController {
+            if let settingsvc = segue.destination as? RequestSettingsViewController {
                 settingsvc.post = helpPost
             }
         }

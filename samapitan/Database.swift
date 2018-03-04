@@ -30,9 +30,9 @@ class Database {
         }
     }
     
-    static func loadPeopleData(callback: (Void) -> Void) {
+    static func loadPeopleData(callback: @escaping () -> Void) {
         let firebase = FIRDatabase.database().reference()
-        firebase.child("people").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        firebase.child("people").observeSingleEvent(of: .value, with: { (snapshot) in
             if let people = snapshot.value as? [[String: AnyObject]] {
                 for person in people {
                     let name = person["name"] as! String
@@ -50,9 +50,9 @@ class Database {
         }
     }
     
-    static func loadInterestData(callback: (Void) -> Void) {
+    static func loadInterestData(callback: @escaping () -> Void) {
         let firebase = FIRDatabase.database().reference()
-        firebase.child("interests").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        firebase.child("interests").observeSingleEvent(of: .value, with: { (snapshot) in
             if let interests = snapshot.value as? [[String: AnyObject]] {
                 for interest in interests {
                     let title = interest["title"] as! String
@@ -62,16 +62,16 @@ class Database {
                     let long = interest["long"] as! Double
                     InterestPoints.append(InterestPoint(coord: CLLocationCoordinate2D(latitude: lat, longitude: long), title: title, description: description, photoUrl: photoUrl))
                 }
-                    callback()
+                callback()
             }
         }) { (error) in
             print(error.localizedDescription)
         }
     }
     
-    static func loadRequestData(callback: (Void) -> Void) {
+    static func loadRequestData(callback: @escaping () -> Void) {
         let firebase = FIRDatabase.database().reference()
-        firebase.child("requests").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+        firebase.child("requests").observeSingleEvent(of: .value, with: { (snapshot) in
             if let requests = snapshot.value as? [[String: AnyObject]] {
                 for request in requests {
                     let title = request["title"] as! String
@@ -129,41 +129,41 @@ class Database {
     
     static func respondToRequest(request:HelpPost) {
         var idxToRemove:Int?
-        for (i, theRequest) in Database.AllRequests.enumerate() {
+        for (i, theRequest) in Database.AllRequests.enumerated() {
             if (theRequest.titleString == request.titleString) {
                 idxToRemove = i
                 break
             }
         }
         if let idxCanBeRemoved = idxToRemove {
-            Database.AllRequests.removeAtIndex(idxCanBeRemoved)
+            Database.AllRequests.remove(at: idxCanBeRemoved)
             Database.RespondedToRequests.append(request)
         }
     }
     
     static func resolveRequest(request:HelpPost) {
         var idxToRemove:Int?
-        for (i, theRequest) in Database.PendingRequests.enumerate() {
+        for (i, theRequest) in Database.PendingRequests.enumerated() {
             if (theRequest.titleString == request.titleString) {
                 idxToRemove = i
                 break
             }
         }
         if let idxCanBeRemoved = idxToRemove {
-            Database.PendingRequests.removeAtIndex(idxCanBeRemoved)
+            Database.PendingRequests.remove(at: idxCanBeRemoved)
         }
     }
     
     static func removeInterestPoint(point: InterestPoint) {
         var idxToRemove:Int?
-        for (i, thePoint) in Database.InterestPoints.enumerate() {
+        for (i, thePoint) in Database.InterestPoints.enumerated() {
             if (thePoint.titleString == point.titleString) {
                 idxToRemove = i
                 break
             }
         }
         if let idxCanBeRemoved = idxToRemove {
-            Database.InterestPoints.removeAtIndex(idxCanBeRemoved)
+            Database.InterestPoints.remove(at: idxCanBeRemoved)
         }
     }
 }

@@ -15,8 +15,8 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -26,15 +26,14 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func done() -> Bool {
-        
-        guard let titleCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Title.rawValue)) as? TextFieldTableViewCell,
-            descCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Desc.rawValue)) as? TextViewTableViewCell,
-            switchCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: Sections.Urgency.rawValue)) as? SelectionSwitchTableViewCell
+        guard let titleCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: Sections.Title.rawValue)) as? TextFieldTableViewCell,
+            let descCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: Sections.Desc.rawValue)) as? TextViewTableViewCell,
+            let switchCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: Sections.Urgency.rawValue)) as? SelectionSwitchTableViewCell
         else {
             return false
         }
         
-        if titleCell.textField.text?.characters.count < 1 {
+        if let charCount = titleCell.textField.text?.count, charCount < 1 {
             titleCell.textField.placeholder = "Your request must have a title"
             return false
         }
@@ -52,32 +51,32 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         }
         
         var location = CLLocationCoordinate2D(latitude: 37.32, longitude: -122.04)
-        let lat = NSUserDefaults.standardUserDefaults().doubleForKey("lat") + 0.00002
-        let long = NSUserDefaults.standardUserDefaults().doubleForKey("long")
+        let lat = UserDefaults.standard.double(forKey: "lat") + 0.00002
+        let long = UserDefaults.standard.double(forKey: "long")
         if lat != long {
             location = CLLocationCoordinate2D(latitude: lat, longitude: long)
         }
         
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Hour,.Minute], fromDate: date)
+        let date = Date()
+        let calendar = NSCalendar.current
+        let components = calendar.dateComponents([.hour,.minute], from: date)
         let hour = components.hour
         let minutes = components.minute
         
         Database.PendingRequests.append(HelpPost(coord: location,
             title: title,
-            description: desc,
+            description: desc ?? "",
             urgency: urgency,
             type: HelpPost.RequestType.MyPending,
-            timePosted: "\(hour):\(minutes)",
+            timePosted: "\(hour ?? 0):\(minutes ?? 0)",
             membersHelpingOut: []))
         
-        Database.Chats[title] = [Database.ChatMessage(textBody: desc, owner: .Me, ownerName: "")]
+        Database.Chats[title] = [Database.ChatMessage(textBody: desc ?? "", owner: .Me, ownerName: "")]
         return true
     }
     
     @IBAction private func cancel() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet weak var tableView:UITableView!
@@ -92,12 +91,11 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
     
     let headerSections = ["TITLE", "DESCRIPTION", "URGENCY"]
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
         
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
-        
-        let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-        label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+        label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
         label.text = self.headerSections[section]
         view.addSubview(label)
         view.backgroundColor = UIColor.appBackgroundColor()
@@ -105,21 +103,21 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         return view
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == Sections.Urgency.rawValue {
-            let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
             
-            let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-            label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+            let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+            label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
             label.text = "Choosing urgent will alert nearby volunteers"
             view.addSubview(label)
             return view
         } else {
-            return UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+            return UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0))
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == Sections.Desc.rawValue {
             return 100
         } else {
@@ -127,43 +125,42 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return headerSections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section) {
         case Sections.Title.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("textFieldCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "textFieldCell", for: indexPath)
             if let tfCell = cell as? TextFieldTableViewCell {
-                tfCell.textField.addTarget(tfCell.textField, action: #selector(resignFirstResponder), forControlEvents: .EditingDidEndOnExit)
+                tfCell.textField.addTarget(tfCell.textField, action: #selector(resignFirstResponder), for: .editingDidEndOnExit)
             }
             return cell
         case Sections.Desc.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("textViewCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "textViewCell", for: indexPath)
             if let tvCell = cell as? TextViewTableViewCell {
                 tvCell.textView.delegate = self
             }
             return cell
         case Sections.Urgency.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = 0
                 cell.urgencySwitch.tintColor = UIColor.appBlue()
-                cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), forControlEvents: .ValueChanged)
+                cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), for: .valueChanged)
             }
             return cell
         default:
-            return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         }
     }
 
-    func switchTapped(control:UISegmentedControl) {
+    @objc func switchTapped(_ control:UISegmentedControl) {
         if (control.selectedSegmentIndex == 0) {
             control.tintColor = UIColor.appBlue()
         } else if (control.selectedSegmentIndex == 1) {
@@ -172,7 +169,8 @@ class CreateRequestViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     // MARK: UITextView Delegate
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
         }

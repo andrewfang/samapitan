@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
 
     @IBAction private func done() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     private enum Sections:Int {
@@ -35,26 +35,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.requests = []
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
     
     let headerSections = ["ABOUT ME", "GROUP", "CONNECTED SERVICES", "SETTINGS"]
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
         
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
-        
-        let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-        label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+        label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
         label.text = self.headerSections[section]
         view.addSubview(label)
         view.backgroundColor = UIColor.appBackgroundColor()
@@ -62,18 +61,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return view
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section) {
         case Sections.About.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("EditTextCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EditTextCell", for: indexPath)
             return cell
         case Sections.Group.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
             cell.textLabel?.text = "Disaster Tech Lab"
             return cell
         case Sections.Connected.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
             if (indexPath.item == 0) {
                 cell.textLabel?.text = "WhatsApp"
             } else if (indexPath.item == 1) {
@@ -81,25 +79,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             return cell
         case Sections.Settings.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("ButtonCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonCell", for: indexPath)
             if let cell = cell as? SwitchTableViewCell {
                 cell.titleLabel.text = "Available to help"
-                cell.settingsSwitch.on = NSUserDefaults.standardUserDefaults().boolForKey("available")
-                cell.settingsSwitch.addTarget(self, action: #selector(SettingsViewController.toggleSwitch(_:)), forControlEvents: .AllTouchEvents)
+                cell.settingsSwitch.isOn = UserDefaults.standard.bool(forKey: "available")
+                cell.settingsSwitch.addTarget(self, action: #selector(toggleSwitch(_:)), for: .allTouchEvents)
             }
             
             cell.setNeedsLayout()
             return cell
         default:
-            return tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "SettingsCell", for: indexPath)
         }
     }
     
-    func toggleSwitch(switchBtn:UISwitch) {
-        NSUserDefaults.standardUserDefaults().setBool(switchBtn.on, forKey: "available")
+    @objc func toggleSwitch(_ switchBtn:UISwitch) {
+        UserDefaults.standard.set(switchBtn.isOn, forKey: "available")
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case Sections.About.rawValue:
             return 1
@@ -114,7 +112,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 70
         } else {
@@ -122,8 +120,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }

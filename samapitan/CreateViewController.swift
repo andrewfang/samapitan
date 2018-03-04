@@ -19,51 +19,51 @@ class CreateViewController: UIPageViewController, UIPageViewControllerDataSource
         self.dataSource = self
         self.title = "Create Help Request"
         
-        let createRequest: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("createRequestBoard")
-        let createInterest: UIViewController! = storyboard?.instantiateViewControllerWithIdentifier("createInterestBoard")
+        let createRequest: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "createRequestBoard")
+        let createInterest: UIViewController! = storyboard?.instantiateViewController(withIdentifier: "createInterestBoard")
         
         pages.append(createRequest)
         pages.append(createInterest)
-        setViewControllers([createRequest], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
+        setViewControllers([createRequest], direction: UIPageViewControllerNavigationDirection.forward, animated: false, completion: nil)
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         let previousIndex = abs((currentIndex - 1) % pages.count)
         return pages[previousIndex]
     }
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        let currentIndex = pages.indexOf(viewController)!
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        let currentIndex = pages.index(of: viewController)!
         let nextIndex = abs((currentIndex + 1) % pages.count)
         return pages[nextIndex]
     }
     
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return pages.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
     @IBAction private func cancel() {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func done() {
         if let requestVC = self.viewControllers![0] as? CreateRequestViewController {
             if requestVC.done() {
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         } else if let interestVC = self.viewControllers![0] as? CreateInterestViewController {
             if interestVC.done() {
-                self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         }
     }
     
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         self.title = pageViewController.viewControllers![0].title
     }
     

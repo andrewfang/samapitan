@@ -38,43 +38,43 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.title = "Samapitan"
         self.navigationController?.navigationBar.barTintColor = UIColor.appTabBarColor()
-        self.navigationController?.navigationBar.translucent = false
-        Database.loadPeopleData({
+        self.navigationController?.navigationBar.isTranslucent = false
+        Database.loadPeopleData {
             self.people = Database.PeoplePinsToLoad
             self.addPeople()
-        })
+        }
         
-        Database.loadRequestData({
+        Database.loadRequestData {
             self.posts = []
-            self.posts.appendContentsOf(Database.AllRequests)
-            self.posts.appendContentsOf(Database.PendingRequests)
-            self.posts.appendContentsOf(Database.RespondedToRequests)
+            self.posts.append(contentsOf: Database.AllRequests)
+            self.posts.append(contentsOf: Database.PendingRequests)
+            self.posts.append(contentsOf: Database.RespondedToRequests)
             self.addRequest()
-        })
+        }
         
-        Database.loadInterestData({
+        Database.loadInterestData {
             self.interestPoints = Database.InterestPoints
             self.addInterest()
-        })
+        }
         
-        if (!NSUserDefaults.standardUserDefaults().boolForKey("onboarded")) {
-            self.performSegueWithIdentifier("showOnboarding", sender: nil)
+        if (!UserDefaults.standard.bool(forKey: "onboarded")) {
+            self.performSegue(withIdentifier: "showOnboarding", sender: nil)
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.setBackgroundImage(nil, forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
-        if NSUserDefaults.standardUserDefaults().boolForKey("onboarded") {
+        if UserDefaults.standard.bool(forKey: "onboarded") {
             self.setupLocationManager()
         }
         
-        self.mapView.viewForAnnotation(mapView.userLocation)?.hidden = !NSUserDefaults.standardUserDefaults().boolForKey("available")
+        self.mapView.view(for: mapView.userLocation)?.isHidden = !UserDefaults.standard.bool(forKey: "available")
         self.updateAnnotations()
     }
     
@@ -97,9 +97,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             self.mapView?.removeAnnotations(self.interestPoints)
             
             self.posts = []
-            self.posts.appendContentsOf(Database.AllRequests)
-            self.posts.appendContentsOf(Database.PendingRequests)
-            self.posts.appendContentsOf(Database.RespondedToRequests)
+            self.posts.append(contentsOf: Database.AllRequests)
+            self.posts.append(contentsOf: Database.PendingRequests)
+            self.posts.append(contentsOf: Database.RespondedToRequests)
             self.mapView?.addAnnotations(self.posts)
             
             
@@ -108,24 +108,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        self.mapView.viewForAnnotation(mapView.userLocation)?.hidden = !NSUserDefaults.standardUserDefaults().boolForKey("available")
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        self.mapView.view(for: mapView.userLocation)?.isHidden = !UserDefaults.standard.bool(forKey: "available")
         if let _ = annotation as? MKUserLocation {
             return nil
         }
         
         var view: MKAnnotationView!
         if let _ = annotation as? HelpPost {
-            view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.PostPin)
+            view = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.PostPin)
             if (view == nil) {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.PostPin)
             }
                 view.canShowCallout = true
                 if let hp = annotation as? HelpPost {
                     if (hp.type == .MyPending) {
-                        view.draggable = true
+                        view.isDraggable = true
                     } else {
-                        view.draggable = false
+                        view.isDraggable = false
                     }
                     switch (hp.urgency) {
                     case HelpPost.Urgency.Urgent:
@@ -134,14 +134,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         view.image = UIImage(named: "helpgreen")
                 }
                 view.leftCalloutAccessoryView = nil
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+                    view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             } else {
                 view.annotation = annotation
                 if let hp = annotation as? HelpPost {
                     if (hp.type == .MyPending) {
-                        view.draggable = true
+                        view.isDraggable = true
                     } else {
-                        view.draggable = false
+                        view.isDraggable = false
                     }
                     switch (hp.urgency) {
                     case HelpPost.Urgency.Urgent:
@@ -152,12 +152,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 }
             }
         } else if let _ = annotation as? PeoplePost {
-            view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.PersonPin)
+            view = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.PersonPin)
             if (view == nil) {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.PersonPin)
                 view.canShowCallout = true
                 view.image = UIImage(named: "personpin")
-                view.calloutOffset = CGPointMake(0, 0)
+                view.calloutOffset = CGPoint.zero
                 view.rightCalloutAccessoryView = nil
                 view.leftCalloutAccessoryView = UIButton(frame: Constants.ThumbnailFrame)
             } else {
@@ -165,33 +165,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 view.image = UIImage(named: "personpin")
             }
         } else if let _ = annotation as? InterestPoint {
-            view = mapView.dequeueReusableAnnotationViewWithIdentifier(Constants.InterestPin)
+            view = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.InterestPin)
             if (view == nil) {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: Constants.InterestPin)
                 view.canShowCallout = true
                 view.image = UIImage(named: "interestPoint")
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
-                view.calloutOffset = CGPointMake(0, 0)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                view.calloutOffset = CGPoint.zero
                 view.leftCalloutAccessoryView = nil
             } else {
                 view.annotation = annotation
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+                view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
             }
         }
         return view
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let thumbnailImageView = view.leftCalloutAccessoryView as? UIButton,
             let anno = view.annotation as? PeoplePost {
             if let url = NSURL(string: anno.imageURL) {
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)){
-                    if let data = NSData(contentsOfURL: url) {
-                        dispatch_async(dispatch_get_main_queue()){
-                            if let image = UIImage(data: data) {
-                                thumbnailImageView.setImage(image, forState: .Normal)
-                                thumbnailImageView.imageView?.contentMode = .ScaleAspectFill
-                            }
+                if let data = try? Data(contentsOf: url as URL) {
+                    DispatchQueue.main.async {
+                        if let image = UIImage(data: data) {
+                            thumbnailImageView.setImage(image, for: .normal)
+                            thumbnailImageView.imageView?.contentMode = .scaleAspectFill
                         }
                     }
                 }
@@ -200,40 +198,40 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         if let thumbnailButton = view.rightCalloutAccessoryView as? UIButton {
             thumbnailButton.tintColor = UIColor.appBlue()
-            if let hp = view as? HelpPost where hp.urgency == .Urgent {
+            if let hp = view.annotation as? HelpPost, hp.urgency == .Urgent {
                 thumbnailButton.tintColor = UIColor.appRed()
             }
         }
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, didChangeDragState newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         switch (newState) {
-        case .Starting:
-            view.dragState = .Dragging
-        case .Ending, .Canceling:
-            view.dragState = .None
+        case .starting:
+            view.dragState = .dragging
+        case .ending, .canceling:
+            view.dragState = .none
         default:
             break
         }
     }
 
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.leftCalloutAccessoryView {
-            performSegueWithIdentifier(Constants.ShowProfileSegue, sender: view)
+            performSegue(withIdentifier: Constants.ShowProfileSegue, sender: view)
         } else if control == view.rightCalloutAccessoryView {
             if let _ = view.annotation as? HelpPost {
-                performSegueWithIdentifier(Constants.ShowRequestSegue, sender: view)
+                performSegue(withIdentifier: Constants.ShowRequestSegue, sender: view)
             } else if let _ = view.annotation as? InterestPoint {
-                performSegueWithIdentifier(Constants.ShowInterestSegue, sender: view)
+                performSegue(withIdentifier: Constants.ShowInterestSegue, sender: view)
             }
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Constants.ShowProfileSegue {
             if let view = sender as? MKAnnotationView {
                 if let ppost = view.annotation as? PeoplePost {
-                    if let destVC = segue.destinationViewController as? ProfileViewController {
+                    if let destVC = segue.destination as? ProfileViewController {
                         destVC.person = ppost
                     }
                 }
@@ -241,7 +239,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         } else if segue.identifier == Constants.ShowRequestSegue {
             if let view = sender as? MKAnnotationView {
                 if let hpost = view.annotation as? HelpPost {
-                    if let destVC = segue.destinationViewController as? RequestViewController {
+                    if let destVC = segue.destination as? RequestViewController {
                         destVC.helpPost = hpost
                     }
                 }
@@ -249,7 +247,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         } else if segue.identifier == Constants.ShowInterestSegue {
             if let view = sender as? MKAnnotationView {
                 if let ipost = view.annotation as? InterestPoint {
-                    if let destVC = segue.destinationViewController as? InterestViewController {
+                    if let destVC = segue.destination as? InterestViewController {
                         destVC.interestPoint = ipost
                     }
                 }
@@ -268,20 +266,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.locationManager.startUpdatingLocation()
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.locationManager?.stopUpdatingLocation()
         print(error)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let locationObj = locations.last {
             print(locationObj.coordinate)
-            NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.latitude, forKey: "lat")
-            NSUserDefaults.standardUserDefaults().setDouble(locationObj.coordinate.longitude, forKey: "long")
-             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "available")
+            UserDefaults.standard.set(locationObj.coordinate.latitude, forKey: "lat")
+            UserDefaults.standard.set(locationObj.coordinate.longitude, forKey: "long")
+            UserDefaults.standard.set(true, forKey: "available")
             if (firstLoad) {
                 firstLoad = false
-                self.mapView.setCenterCoordinate(locationObj.coordinate, animated: true)
+                self.mapView.setCenter(locationObj.coordinate, animated: true)
                 let span = MKCoordinateSpanMake(0.05, 0.05)
                 let region = MKCoordinateRegion(center: locationObj.coordinate, span: span)
                 self.mapView.setRegion(region, animated: true)

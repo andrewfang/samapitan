@@ -22,7 +22,7 @@ class InterestPoint: NSObject, MKAnnotation {
         self.titleString = title
         self.descriptionString = description
         if let url = NSURL(string: photoUrl) {
-            if let data = NSData(contentsOfURL: url) {
+            if let data = try? Data(contentsOf: url as URL) {
                 self.photo = UIImage(data: data)
             } else {
                 photo = UIImage(named: "placeholder")

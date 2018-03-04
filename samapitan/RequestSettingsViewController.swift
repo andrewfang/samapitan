@@ -32,38 +32,37 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
     
     let headerSections = ["TITLE", "DESCRIPTION", "URGENCY", "PEOPLE HELPING OUT", "Buttons"]
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if (section < headerSections.count - 1) {
-            let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
             
-            let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-            label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+            let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+            label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
             label.text = self.headerSections[section]
             view.addSubview(label)
             view.backgroundColor = UIColor.appBackgroundColor()
             
             return view
         } else {
-            return UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+            return UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0))
         }
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == Sections.Urgency.rawValue {
-            let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 18))
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
             
-            let label = UILabel(frame: CGRectMake(10, 5, tableView.frame.size.width, 18))
-            label.font = UIFont.systemFontOfSize(12, weight: UIFontWeightThin)
+            let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+            label.font = UIFont.systemFont(ofSize: 12, weight: .thin)
             label.text = "Choosing urgent will alert nearby volunteers"
             view.addSubview(label)
             return view
         } else {
-            return UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 0))
+            return UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0))
         }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == Sections.Desc.rawValue {
             return 100
         } else {
@@ -71,7 +70,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if (post.type == HelpPost.RequestType.MyPending) {
             return headerSections.count
         } else {
@@ -80,7 +79,7 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == Sections.People.rawValue) {
             return post.membersHelpingOut.count
         } else if (section == Sections.Buttons.rawValue) {
@@ -90,21 +89,20 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section) {
         case Sections.Title.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath)
             cell.textLabel?.text = post.titleString
             return cell
         case Sections.Desc.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("longTextCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "longTextCell", for: indexPath)
             if let cell = cell as? LongTextTableViewCell {
                 cell.longLabel.text = post.descriptionString
             }
             return cell
         case Sections.Urgency.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("switchCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "switchCell", for: indexPath)
             if let cell = cell as? SelectionSwitchTableViewCell {
                 cell.urgencySwitch.selectedSegmentIndex = post.urgency.rawValue
                 switch (post.urgency) {
@@ -114,44 +112,44 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
                     cell.urgencySwitch.tintColor = UIColor.appRed()
                 }
                 if (post.type == .MyPending) {
-                    cell.urgencySwitch.userInteractionEnabled = true
-                    cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), forControlEvents: .ValueChanged)
+                    cell.urgencySwitch.isUserInteractionEnabled = true
+                    cell.urgencySwitch.addTarget(self, action: #selector(switchTapped(_:)), for: .valueChanged)
                 } else {
-                    cell.urgencySwitch.userInteractionEnabled = false
+                    cell.urgencySwitch.isUserInteractionEnabled = false
                 }
             }
             return cell
         case Sections.People.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("peopleHelpingCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "peopleHelpingCell", for: indexPath)
             if let cell = cell as? PeopleHelpingTableViewCell {
                 cell.profileNameLabel.text = post.membersHelpingOut[indexPath.item].name
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), {
-                    if let url = NSURL(string: self.post.membersHelpingOut[indexPath.item].imageURL) {
-                        if let data = NSData(contentsOfURL: url) {
-                            NSOperationQueue.mainQueue().addOperationWithBlock({
+                DispatchQueue.main.async {
+                    if let url = URL(string: self.post.membersHelpingOut[indexPath.item].imageURL) {
+                        if let data = try? Data(contentsOf: url) {
+                            OperationQueue.main.addOperation({
                                 cell.profileImageView.image = UIImage(data: data)
                             })
                         }
                     }
-                })
+                }
             }
             
             return cell
         case Sections.Buttons.rawValue:
-            let cell = tableView.dequeueReusableCellWithIdentifier("buttonCell", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "buttonCell", for: indexPath)
             cell.backgroundColor = UIColor.appBackgroundColor()
             if let cell = cell as? ButtonTableViewCell {
                 
-                cell.actionButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                cell.actionButton.setTitleColor(UIColor.white, for: .normal)
                 cell.actionButton.layer.cornerRadius = 5.0
                 cell.actionButton.contentEdgeInsets = UIEdgeInsetsMake(10, 20, 10, 20)
 
                 switch (indexPath.item) {
                 case 0:
-                    cell.actionButton.setTitle("Cancel Request", forState: .Normal)
-                    cell.actionButton.backgroundColor = UIColor.blackColor()
+                    cell.actionButton.setTitle("Cancel Request", for: .normal)
+                    cell.actionButton.backgroundColor = UIColor.black
                 case 1:
-                    cell.actionButton.setTitle("Resolve Request", forState: .Normal)
+                    cell.actionButton.setTitle("Resolve Request", for: .normal)
                     cell.actionButton.backgroundColor = UIColor.appBlue()
                 default:
                     break
@@ -159,12 +157,12 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
             }
             return cell
         default:
-            return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath)
+            return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
         }
     }
     
     
-    func switchTapped(control:UISegmentedControl) {
+    @objc func switchTapped(_ control:UISegmentedControl) {
         if (control.selectedSegmentIndex == 0) {
             control.tintColor = UIColor.appBlue()
         } else if (control.selectedSegmentIndex == 1) {
@@ -173,8 +171,8 @@ class RequestSettingsViewController: UIViewController, UITableViewDelegate, UITa
     }
     
     @IBAction private func resolveRequest() {
-        Database.resolveRequest(self.post)
-        self.navigationController?.popToRootViewControllerAnimated(true)
+        Database.resolveRequest(request: self.post)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
 
